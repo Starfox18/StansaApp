@@ -38,12 +38,14 @@ namespace UserApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataGridView^  dgvModStansa;
+
+
+
 	protected:
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Name;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Place;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  OperatingMachines;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Waiting;
+
+
+
+
 
 	private:
 		/// <summary>
@@ -58,70 +60,40 @@ namespace UserApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->dgvModStansa = (gcnew System::Windows::Forms::DataGridView());
-			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Place = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->OperatingMachines = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Waiting = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvModStansa))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// dgvModStansa
-			// 
-			this->dgvModStansa->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvModStansa->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->Name, this->Place,
-					this->OperatingMachines, this->Waiting
-			});
-			this->dgvModStansa->Location = System::Drawing::Point(12, 12);
-			this->dgvModStansa->Name = L"dgvModStansa";
-			this->dgvModStansa->Size = System::Drawing::Size(443, 351);
-			this->dgvModStansa->TabIndex = 2;
-			this->dgvModStansa->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ModStansa::dgvModStansa_CellContentClick);
-			// 
-			// Name
-			// 
-			this->Name->HeaderText = L"Nombre";
-			this->Name->Name = L"Name";
-			// 
-			// Place
-			// 
-			this->Place->HeaderText = L"Ubicación";
-			this->Place->Name = L"Place";
-			// 
-			// OperatingMachines
-			// 
-			this->OperatingMachines->HeaderText = L"Maquinas Operativas";
-			this->OperatingMachines->Name = L"OperatingMachines";
-			// 
-			// Waiting
-			// 
-			this->Waiting->HeaderText = L"Personas en Espera";
-			this->Waiting->Name = L"Waiting";
 			// 
 			// ModStansa
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(469, 377);
-			this->Controls->Add(this->dgvModStansa);
 			this->Name = L"ModStansa";
 			this->Text = L"Información de los Modulos";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvModStansa))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	public: void RefreshDGVModStansa(){
-/*
+				/*
 				String^ a;
 				ModuloStansa^ modList = StansaManager::QueryModuloStansaByPlace(a);
 				List<Attention^>^ atentionList = StansaManager::QueryAllAttentionByModuloStansa(modList);
 
-				
+				int b = 0;
+				for (int i = 0; i < atentionList->Count; i++)
+				{
+					if (String::Compare((atentionList[i]-> estado),"esperando"))
+					{
+						b = b + 1;
+
+					}
+
+				}
+
+
 				//lstProducts->Items->Clear();
 				dgvModStansa->Rows->Clear();
-				for (int i = 0; i < modList->Count; i++){
+				for (int i = 0; i < atentionList->Count; i++){
 					dgvModStansa->Rows->Add(gcnew array<String^>{
 						"" + modList[i]->name,
 							modList[i]->place,
@@ -129,6 +101,7 @@ namespace UserApp {
 							"" + atentionList[i]-> });
 				}*/
 	}
+
 	private: System::Void dgvModStansa_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 	}
 	};
