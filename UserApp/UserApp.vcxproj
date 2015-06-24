@@ -19,11 +19,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccessForm.cpp" />
+    <ClCompile Include="ModStansa.cpp" />
     <ClCompile Include="PrincipalForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModStansa.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PrincipalForm.h">
@@ -37,12 +41,23 @@
     <EmbeddedResource Include="AccessForm.resx">
       <DependentUpon>AccessForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModStansa.resx">
+      <DependentUpon>ModStansa.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FotoLibrary\FotoLibrary.vcxproj">
+      <Project>{0e6d0dea-202f-4274-b286-5e3d4431aa48}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\StansaController\StansaController.vcxproj">
+      <Project>{af7d6ec8-82f8-4d90-89e2-0f1a985bb910}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}</ProjectGuid>

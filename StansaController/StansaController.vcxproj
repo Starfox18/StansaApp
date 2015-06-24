@@ -106,9 +106,6 @@
     <ProjectReference Include="..\FotoLibrary\FotoLibrary.vcxproj">
       <Project>{87713fc9-4edb-45e8-a71a-fc6d6acc0d13}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\FotoLibray\FotoLibray.vcxproj">
-      <Project>{ca2ee4ac-7880-44e3-a00d-b9251f607596}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
