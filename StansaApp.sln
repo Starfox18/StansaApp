@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FotoLibrary", "FotoLibrary\FotoLibrary.vcxproj", "{0E6D0DEA-202F-4274-B286-5E3D4431AA48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserApp", "UserApp\UserApp.vcxproj", "{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StansaController", "StansaController\StansaController.vcxproj", "{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E6D0DEA-202F-4274-B286-5E3D4431AA48}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0E6D0DEA-202F-4274-B286-5E3D4431AA48}.Debug|Win32.Build.0 = Debug|Win32
+		{0E6D0DEA-202F-4274-B286-5E3D4431AA48}.Release|Win32.ActiveCfg = Release|Win32
+		{0E6D0DEA-202F-4274-B286-5E3D4431AA48}.Release|Win32.Build.0 = Release|Win32
+		{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}.Debug|Win32.Build.0 = Debug|Win32
+		{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}.Release|Win32.ActiveCfg = Release|Win32
+		{B65D9C5A-0EE0-4B47-95AD-341FA13021F2}.Release|Win32.Build.0 = Release|Win32
+		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Debug|Win32.Build.0 = Debug|Win32
+		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Release|Win32.ActiveCfg = Release|Win32
+		{AF7D6EC8-82F8-4D90-89E2-0F1A985BB910}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
