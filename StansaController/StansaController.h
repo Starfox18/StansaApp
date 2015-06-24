@@ -14,6 +14,7 @@ namespace StansaController {
 			void Delete(int id);
 			Customer^ QueryById(int id);
 			Customer^ QueryByDni(String^ dni);
+			Customer^ QueryByUser(String^ dni);
 			Customer^ QueryByCodigoPUCP(String^ codigoPUCP);
 			List<Customer^>^ QueryAll();
 	}; //Fin Clase CustomerDB
@@ -90,6 +91,7 @@ namespace StansaController {
 			static void DeleteCustomer(int id);
 			static Customer^ QueryCustomerById(int id);
 			static Customer^ QueryCustomerByDni(String^ dni);
+			static Customer^ QueryCustomerByUser(String^ user);
 			static Customer^ QueryCustomerByCodigoPUCP(String^ codigoPUCP);
 			static List<Customer^>^ QueryAllCustomer();
 

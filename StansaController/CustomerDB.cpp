@@ -195,6 +195,60 @@ Customer^ CustomerDB::QueryById(int id){
 	conn->Close();
 	return c;
 }
+
+Customer^ CustomerDB::QueryByUser(String^ user){
+	//Paso 1: Se abre la conexión
+	SqlConnection^ conn;
+	conn = gcnew SqlConnection();
+	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
+		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+	conn->Open();
+	//Paso 2: Preparamos la sentencia
+	SqlCommand^ comm = gcnew SqlCommand();
+	comm->Connection = conn;
+	comm->CommandText = "SELECT * FROM CustomerDB " +
+		"WHERE username=@p1";
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::VarChar);
+	p1->Value = user; // String
+
+	comm->Parameters->Add(p1);
+	//Paso 3: Ejecución de la sentencia
+	SqlDataReader^ dr = comm->ExecuteReader();
+	//Paso 3.1: Procesamos los resultados	
+	Customer ^c = nullptr;
+	if (dr->Read()){
+		c = gcnew Customer();
+		c->id = (int)dr["id"];
+		if (dr["dni"] != System::DBNull::Value)
+			c->dni = safe_cast<String^>(dr["dni"]);
+		if (dr["name"] != System::DBNull::Value)
+			c->name = safe_cast<String ^>(dr["name"]);
+		if (dr["apellido_Paterno"] != System::DBNull::Value)
+			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
+		if (dr["apellido_Materno"] != System::DBNull::Value)
+			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
+		if (dr["sexo"] != System::DBNull::Value)
+			c->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["username"] != System::DBNull::Value)
+			c->username = safe_cast<String ^>(dr["username"]);
+		if (dr["password"] != System::DBNull::Value)
+			c->password = safe_cast<String ^>(dr["password"]);
+		if (dr["codigoPUCP"] != System::DBNull::Value)
+			c->codigoPUCP = safe_cast<String ^>(dr["codigoPUCP"]);
+		if (dr["facultad"] != System::DBNull::Value)
+			c->facultad = safe_cast<String ^>(dr["facultad"]);
+	}
+	//Paso 4: Cerramos el dataReader y la conexión con la BD
+	dr->Close();
+	conn->Close();
+	return c;
+}
+
+
+
+
+
 Customer^ CustomerDB::QueryByDni(String^ dni){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;

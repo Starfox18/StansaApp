@@ -8,6 +8,7 @@ namespace UserApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace Threading;
 
 	/// <summary>
 	/// Resumen de PrincipalForm
@@ -15,6 +16,9 @@ namespace UserApp {
 	public ref class PrincipalForm : public System::Windows::Forms::Form
 	{
 	public:
+		String^ tittle;
+		Thread^ tittle_thread;
+
 		PrincipalForm(void)
 		{
 			InitializeComponent();
@@ -22,6 +26,30 @@ namespace UserApp {
 			//TODO: agregar código de constructor aquí
 			//
 		}
+		
+		void crear(){
+			tittle_thread = gcnew Thread(gcnew ThreadStart(this, &PrincipalForm::MyRun));
+			tittle_thread->Start();
+		}
+
+		void MyRun(){
+			while (true) {
+
+				DateTime^ now = DateTime::Now;
+				Invoke(gcnew delegateUpdateTitle(this, &PrincipalForm::UpdateTitle),
+					gcnew array<String^>{ tittle + now->ToString("hh:mm:ss")});
+				Thread::Sleep(1000);
+				if (!this->Visible)
+					return;
+			}
+		}
+
+		delegate void delegateUpdateTitle(String^);
+
+		void UpdateTitle(String ^newTitle){
+			this->Text = newTitle;
+		}
+
 
 	protected:
 		/// <summary>

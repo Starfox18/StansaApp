@@ -1,5 +1,5 @@
 #pragma once
-
+#include "PrincipalForm.h"
 namespace UserApp {
 
 	using namespace System;
@@ -8,6 +8,8 @@ namespace UserApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace FotoLibrary;
+	using namespace StansaController;
 
 	/// <summary>
 	/// Resumen de AccessForm
@@ -34,9 +36,12 @@ namespace UserApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::TextBox^  txtPsw;
 	protected:
-	private: System::Windows::Forms::TextBox^  textBox1;
+
+	private: System::Windows::Forms::TextBox^  txtUser;
+	protected:
+
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
@@ -58,8 +63,8 @@ namespace UserApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtPsw = (gcnew System::Windows::Forms::TextBox());
+			this->txtUser = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -69,19 +74,19 @@ namespace UserApp {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// textBox2
+			// txtPsw
 			// 
-			this->textBox2->Location = System::Drawing::Point(213, 78);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 17;
+			this->txtPsw->Location = System::Drawing::Point(213, 78);
+			this->txtPsw->Name = L"txtPsw";
+			this->txtPsw->Size = System::Drawing::Size(100, 20);
+			this->txtPsw->TabIndex = 17;
 			// 
-			// textBox1
+			// txtUser
 			// 
-			this->textBox1->Location = System::Drawing::Point(213, 39);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 16;
+			this->txtUser->Location = System::Drawing::Point(213, 39);
+			this->txtUser->Name = L"txtUser";
+			this->txtUser->Size = System::Drawing::Size(100, 20);
+			this->txtUser->TabIndex = 16;
 			// 
 			// label4
 			// 
@@ -146,14 +151,15 @@ namespace UserApp {
 			this->button1->TabIndex = 9;
 			this->button1->Text = L"Acceder";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &AccessForm::button1_Click);
 			// 
 			// AccessForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(494, 223);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtPsw);
+			this->Controls->Add(this->txtUser);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -168,5 +174,49 @@ namespace UserApp {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+				 
+				 String^ user = txtUser->Text;
+				 String^ psw = txtPsw->Text;
+				 Customer^ p = StansaManager::QueryCustomerByUser(user);
+				 
+				 while (p == nullptr)
+				 {
+					 MessageBox::Show("Usuario NO EXISTE");
+					 //();
+				 }
+				 /*if (p == nullptr){
+				 MessageBox::Show("Usuario NO EXISTE");
+				 goto ;
+				 }
+				 */
+
+				 int value = 0;
+
+				 if (String::Compare(p->password,psw))
+				 {
+					 value = 1;
+				 }
+				 	 
+
+				 if (value == 1)
+				 {
+					 PrincipalForm ^ psForm = gcnew PrincipalForm();
+					 psForm->tittle = " Bienvenido a AppStansa " + p->name + " ";
+					 Visible = false;
+					 psForm->ShowDialog();
+					 //this->
+
+
+				 }
+				 else
+				 {
+					 MessageBox::Show("Usuario o Contraseña INCORRECTA");
+
+				 }
+
+
+
+	}
+};
 }

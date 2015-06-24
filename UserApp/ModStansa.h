@@ -73,9 +73,9 @@ namespace UserApp {
 				this->Name, this->Place,
 					this->OperatingMachines, this->Waiting
 			});
-			this->dgvModStansa->Location = System::Drawing::Point(97, 93);
+			this->dgvModStansa->Location = System::Drawing::Point(12, 12);
 			this->dgvModStansa->Name = L"dgvModStansa";
-			this->dgvModStansa->Size = System::Drawing::Size(444, 150);
+			this->dgvModStansa->Size = System::Drawing::Size(443, 351);
 			this->dgvModStansa->TabIndex = 2;
 			this->dgvModStansa->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ModStansa::dgvModStansa_CellContentClick);
 			// 
@@ -103,22 +103,22 @@ namespace UserApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(667, 399);
+			this->ClientSize = System::Drawing::Size(469, 377);
 			this->Controls->Add(this->dgvModStansa);
 			this->Name = L"ModStansa";
-			this->Text = L"ModStansa";
+			this->Text = L"Información de los Modulos";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvModStansa))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	public: void RefreshDGVModStansa(){
-
+/*
 				String^ a;
 				ModuloStansa^ modList = StansaManager::QueryModuloStansaByPlace(a);
 				List<Attention^>^ atentionList = StansaManager::QueryAllAttentionByModuloStansa(modList);
 
-
+				
 				//lstProducts->Items->Clear();
 				dgvModStansa->Rows->Clear();
 				for (int i = 0; i < modList->Count; i++){
@@ -127,7 +127,7 @@ namespace UserApp {
 							modList[i]->place,
 							"" + modList[i]->MaquinasOperativas,
 							"" + atentionList[i]-> });
-				}
+				}*/
 	}
 	private: System::Void dgvModStansa_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 	}

@@ -23,6 +23,9 @@ Customer^ StansaManager::QueryCustomerById(int id){
 Customer^ StansaManager::QueryCustomerByDni(String^ dni){
 	return customerDB->QueryByDni(dni);
 }
+Customer^ StansaManager::QueryCustomerByUser(String^ user){
+	return customerDB->QueryByUser(user);
+}
 Customer^ StansaManager::QueryCustomerByCodigoPUCP(String^ codigoPUCP){
 	return customerDB->QueryByCodigoPUCP(codigoPUCP);
 }
