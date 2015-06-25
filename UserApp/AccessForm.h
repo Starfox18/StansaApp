@@ -143,7 +143,7 @@ namespace UserApp {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 10;
-			this->button2->Text = L"sdfsdfsdfsdfsdf";
+			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &AccessForm::button2_Click);
 			// 
