@@ -1,5 +1,6 @@
 #pragma once
 #include "PrincipalForm.h"
+#include "RegisterForm.h"
 namespace UserApp {
 
 	using namespace System;
@@ -133,6 +134,7 @@ namespace UserApp {
 			this->button3->TabIndex = 11;
 			this->button3->Text = L"Registrar";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &AccessForm::button3_Click);
 			// 
 			// button2
 			// 
@@ -202,6 +204,12 @@ namespace UserApp {
 	}
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 Close();
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			 RegisterForm ^psForm = gcnew RegisterForm();
+			 psForm->ShowDialog();
+
 }
 };
 }
