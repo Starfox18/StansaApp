@@ -19,15 +19,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccessForm.cpp" />
-    <ClCompile Include="ModStansa.cpp" />
     <ClCompile Include="PrincipalForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
+    <ClCompile Include="StatusForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="ModStansa.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PrincipalForm.h">
@@ -36,19 +33,22 @@
     <ClInclude Include="RegisterForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="StatusForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AccessForm.resx">
       <DependentUpon>AccessForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModStansa.resx">
-      <DependentUpon>ModStansa.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusForm.resx">
+      <DependentUpon>StatusForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
