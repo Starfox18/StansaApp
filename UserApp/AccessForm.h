@@ -176,44 +176,27 @@ namespace UserApp {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 
-				 String^ user = txtUser->Text;
-				 String^ psw = txtPsw->Text;
+				 String^ user = txtUser->Text->Trim();
+				 String^ psw = txtPsw->Text->Trim();
 				 Customer^ p = StansaManager::QueryCustomerByUser(user);
 				 
 				 while (p == nullptr)
 				 {
 					 MessageBox::Show("Usuario NO EXISTE");
-					 //();
+					 return;
 				 }
-				 /*if (p == nullptr){
-				 MessageBox::Show("Usuario NO EXISTE");
-				 goto ;
-				 }
-				 */
-
+				 
 				 int value = 0;
 
 				 if (String::Compare(p->password,psw))
-				 {
-					 value = 1;
-				 }
-				 	 
-
-				 if (value == 1)
-				 {
-					 PrincipalForm ^ psForm = gcnew PrincipalForm();
+				 {	 PrincipalForm ^ psForm = gcnew PrincipalForm();
 					 psForm->tittle = " Bienvenido a AppStansa " + p->name + " ";
 					 Visible = false;
 					 psForm->ShowDialog();
 					 //this->
-
-
-				 }
+				}
 				 else
-				 {
-					 MessageBox::Show("Usuario o Contraseña INCORRECTA");
-
-				 }
+				 {	 MessageBox::Show("Usuario o Contraseña INCORRECTA"); }
 
 
 

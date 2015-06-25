@@ -18,7 +18,7 @@ void CustomerDB::Add(Customer^ c){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO CustomerDB " +
+	comm->CommandText = "INSERT INTO Customer_DB " +
 		" (dni, name, apellido_Paterno, apellido_Materno, sexo, username, password, codigoPUCP, facultad)" +
 		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -74,7 +74,7 @@ void CustomerDB::Update(Customer^ c){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE CustomerDB " +
+	comm->CommandText = "UPDATE Customer_DB " +
 		"SET dni=@p1, name=@p2, apellido_Paterno=@p3, apellido_Materno=@p4, sexo=@p5, username=@p6 , password=@p7 , codigoPUCP=@p8 , facultad=@p9  " +
 		" WHERE id=@p10";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -134,7 +134,7 @@ void CustomerDB::Delete(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM CustomerDB " +
+	comm->CommandText = "DELETE FROM Customer_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -157,7 +157,7 @@ Customer^ CustomerDB::QueryById(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB " +
+	comm->CommandText = "SELECT * FROM Customer_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -206,7 +206,7 @@ Customer^ CustomerDB::QueryByUser(String^ user){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB " +
+	comm->CommandText = "SELECT * FROM Costumer_DB " +
 		"WHERE username=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -225,9 +225,9 @@ Customer^ CustomerDB::QueryByUser(String^ user){
 		if (dr["name"] != System::DBNull::Value)
 			c->name = safe_cast<String ^>(dr["name"]);
 		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			c->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
+			c->apellido_Paterno = safe_cast<String ^>(dr["apellidoPaterno"]);
 		if (dr["apellido_Materno"] != System::DBNull::Value)
-			c->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
+			c->apellido_Materno = safe_cast<String ^>(dr["apellidoMaterno"]);
 		if (dr["sexo"] != System::DBNull::Value)
 			c->sexo = safe_cast<char>(dr["sexo"]);
 		if (dr["username"] != System::DBNull::Value)
@@ -259,7 +259,7 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB " +
+	comm->CommandText = "SELECT * FROM Customer_DB " +
 		"WHERE dni=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -307,7 +307,7 @@ Customer^ CustomerDB::QueryByCodigoPUCP(String^ codigoPUCP){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB " +
+	comm->CommandText = "SELECT * FROM Customer_DB " +
 		"WHERE codigoPUCP=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -355,7 +355,7 @@ List<Customer^>^ CustomerDB::QueryAll(){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM CustomerDB ";
+	comm->CommandText = "SELECT * FROM Customer_DB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
