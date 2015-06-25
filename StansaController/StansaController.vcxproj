@@ -86,6 +86,7 @@
     <ClCompile Include="CustomerDB.cpp" />
     <ClCompile Include="ModuloStansaDB.cpp" />
     <ClCompile Include="ProductDB.cpp" />
+    <ClCompile Include="SaleDB.cpp" />
     <ClCompile Include="StaffDB.cpp" />
     <ClCompile Include="StansaManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
@@ -104,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FotoLibrary\FotoLibrary.vcxproj">
-      <Project>{87713fc9-4edb-45e8-a71a-fc6d6acc0d13}</Project>
+      <Project>{0e6d0dea-202f-4274-b286-5e3d4431aa48}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

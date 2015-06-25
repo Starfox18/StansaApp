@@ -1,12 +1,11 @@
 // FotoLibrary.h
-
 #pragma once
 
-using namespace System; using namespace System::Collections::Generic;
+using namespace System;
+using namespace System::Collections::Generic;
 using namespace System::Collections;
 
 namespace FotoLibrary {
-
 	public ref class Persona
 	{
 	public:
@@ -61,15 +60,15 @@ namespace FotoLibrary {
 		int id; //Identifica una fila. Una atencion
 		DateTime^ fecha; //Dia de la Atencion
 		int n_orden; //El Numero de Orden de la Persona que esta siendo atendida
-		DateTime^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
-		DateTime^ hora_fin; //Finaliza la atencion de un Usuario
+		String^ hora_ini; //Inicia la atencion con el Ticket de Numero de Orden
+		String^ hora_fin; //Finaliza la atencion de un Usuario
 		String^ estado; //El estado del Usuario: Atendido o Esperando
 		Customer^ customer; //Que Usuario fue atendido
 		ModuloStansa^ moduloStansa; //En cual ModuloStansa fue atendido
 		Staff^ staff; //Quien fue la persona(staff) que lo atendio.
 	};
 
-	public ref class SaleDetail { //Boleta
+	public ref class Saledetail { //Boleta
 	public:
 		int quantity; //Cantidad de Productos del Tipo Product
 		double subTotal; //Producto*cantidad
@@ -81,9 +80,12 @@ namespace FotoLibrary {
 		int id;
 		double total;
 		DateTime^ date; // Dia de la Venta
+		char status;
 		Staff^ staff; //Quien ejecuto la venta
+		Attention^ attention;
 		Customer^ customer; //Para Obtener el Numero de Orden del Usuario
-		List<SaleDetail^>^ details; //Varias Boletas en un Proceso de Venta
+		ModuloStansa^ modstansa;
+		List<Saledetail^>^ details; //Varias Boletas en un Proceso de Venta
 	};// Fin Clase Sale.
 
 }

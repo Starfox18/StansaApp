@@ -22,13 +22,13 @@ void AttentionDB::Add(Attention^ a){
 		" (fecha, n_orden, hora_ini, hora_fin, estado, customerId, moduloStansaId, staffId)" +
 		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -38,10 +38,10 @@ void AttentionDB::Add(Attention^ a){
 	SqlParameter^ p8 = gcnew SqlParameter("@p8",
 		System::Data::SqlDbType::Int);
 
-	p1->Value = a->fecha; //DateTime
+	p1->Value = a->fecha; //String
 	p2->Value = a->n_orden; //int
-	p3->Value = a->hora_ini; //DateTime
-	p4->Value = a->hora_fin; //DateTime
+	p3->Value = a->hora_ini; //String
+	p4->Value = a->hora_fin; //String
 	p5->Value = a->estado; // String
 	p6->Value = a->customer->id; //int
 	p7->Value = a->moduloStansa->id; //int
@@ -74,13 +74,13 @@ void AttentionDB::Update(Attention^ a){
 		"SET fecha=@p1, n_orden=@p2, hora_ini=@p3, hora_fin=@p4, estado=@p5, customerId=@p6 , moduloStansaId=@p7 , staffId=@p8  " +
 		" WHERE id=@p9";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::DateTime);
+		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -92,10 +92,10 @@ void AttentionDB::Update(Attention^ a){
 	SqlParameter^ p9 = gcnew SqlParameter("@p9",
 		System::Data::SqlDbType::Int);
 
-	p1->Value = a->fecha; //DateTime
+	p1->Value = a->fecha; //String
 	p2->Value = a->n_orden; //int
-	p3->Value = a->hora_ini; //DateTime
-	p4->Value = a->hora_fin; //DateTime
+	p3->Value = a->hora_ini; //String
+	p4->Value = a->hora_fin; //String
 	p5->Value = a->estado; // String
 	p6->Value = a->customer->id; //int
 	p7->Value = a->moduloStansa->id; //int
@@ -168,9 +168,9 @@ Attention^ AttentionDB::QueryById(int id){
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
-			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
+			a->hora_ini = safe_cast<String^>(dr["hora_ini"]);
 		if (dr["hora_fin"] != System::DBNull::Value)
-			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
+			a->hora_fin = safe_cast<String^>(dr["hora_fin"]);
 		if (dr["estado"] != System::DBNull::Value)
 			a->estado = safe_cast<String^>(dr["estado"]);
 		if (dr["customerId"] != System::DBNull::Value)
@@ -209,9 +209,9 @@ List<Attention^>^ AttentionDB::QueryAll(){
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
-			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
+			a->hora_ini = safe_cast<String^>(dr["hora_ini"]);
 		if (dr["hora_fin"] != System::DBNull::Value)
-			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
+			a->hora_fin = safe_cast<String^>(dr["hora_fin"]);
 		if (dr["estado"] != System::DBNull::Value)
 			a->estado = safe_cast<String^>(dr["estado"]);
 		if (dr["customerId"] != System::DBNull::Value)

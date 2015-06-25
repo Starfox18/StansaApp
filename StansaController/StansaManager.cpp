@@ -23,22 +23,22 @@ Customer^ StansaManager::QueryCustomerById(int id){
 Customer^ StansaManager::QueryCustomerByDni(String^ dni){
 	return customerDB->QueryByDni(dni);
 }
-Customer^ StansaManager::QueryCustomerByUser(String^ user){
-	return customerDB->QueryByUser(user);
-}
 Customer^ StansaManager::QueryCustomerByCodigoPUCP(String^ codigoPUCP){
 	return customerDB->QueryByCodigoPUCP(codigoPUCP);
+}
+Customer^ StansaManager::QueryCustomerByUser(String^ user){
+	return customerDB->QueryByUser(user);
 }
 List<Customer^>^ StansaManager::QueryAllCustomer(){
 	return customerDB->QueryAll();
 }
 
 //metodos de clase globlales para Staff
-void StansaManager::AddStaff(Staff^ s){
-	staffDB->Add(s);
+void StansaManager::AddStaff(Staff^ s, int idModuloStansa){
+	staffDB->Add(s, idModuloStansa);
 }
-void StansaManager::UpdateStaff(Staff^ s){
-	staffDB->Update(s);
+void StansaManager::UpdateStaff(Staff^ s, int idModuloStansa){
+	staffDB->Update(s, idModuloStansa);
 }
 void StansaManager::DeleteStaff(int id){
 	staffDB->Delete(id);
@@ -73,7 +73,14 @@ List<Product^>^ StansaManager::QueryAllProduct(){
 List <Product^> ^ StansaManager::QueryProductsLikeName(String ^name){
 	return productDB->QueryLikeName(name);
 }
-//Entrega
+//metodos de clase globales para sales
+void StansaManager::RegisterSaveSale(Sale ^ sale){
+	saleDB->SaveSale(sale);
+}
+void StansaManager::RegisterSaleDetail(int idSale, Saledetail^ saleDetail)
+{
+	saleDB->SaleDetail(idSale, saleDetail);
+}
 
 //metodos de clase globlales para ModuloStansa
 void StansaManager::AddModuloStansa(ModuloStansa^ m){
@@ -88,8 +95,8 @@ void StansaManager::DeleteModuloStansa(int id){
 ModuloStansa^ StansaManager::QueryModuloStansaById(int id){
 	return moduloStansaDB->QueryById(id);
 }
-ModuloStansa^ StansaManager::QueryModuloStansaByPlace(String^ place){
-	return moduloStansaDB->QueryByPlace(place);
+ModuloStansa^ StansaManager::QueryModuloStansaLikePlace(String^ place){
+	return moduloStansaDB->QueryLikePlace(place);
 }
 List<ModuloStansa^>^ StansaManager::QueryAllModuloStansa(){
 	return moduloStansaDB->QueryAll();

@@ -14,12 +14,12 @@ void ProductDB::Add(Product^ p){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO ProductDB " +
+	comm->CommandText = "INSERT INTO Product_DB " +
 		" (name, description, price, stock)" +
 		" VALUES (@p1,@p2,@p3,@p4)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -52,12 +52,12 @@ void ProductDB::Update(Product^ p){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE ProductDB " +
+	comm->CommandText = "UPDATE Product_DB " +
 		"SET name=@p1, description=@p2, price=@p3, stock=@p4 " +
 		" WHERE id=@p5";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
@@ -93,12 +93,12 @@ void ProductDB::Delete(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM ProductDB " +
+	comm->CommandText = "DELETE FROM Product_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -117,12 +117,12 @@ Product^ ProductDB::QueryById(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ProductDB " +
+	comm->CommandText = "SELECT * FROM Product_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -156,12 +156,12 @@ List<Product^>^ ProductDB::QueryAll(){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ProductDB ";
+	comm->CommandText = "SELECT * FROM Product_DB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
@@ -187,17 +187,16 @@ List<Product^>^ ProductDB::QueryAll(){
 	return ProductList;
 }
 
-
 List<Product^>^ ProductDB::QueryLikeName(String ^name){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ProductDB " +
+	comm->CommandText = "SELECT * FROM Product_DB " +
 		"WHERE name LIKE @p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);

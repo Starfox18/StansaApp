@@ -142,6 +142,7 @@ namespace UserApp {
 			this->button2->TabIndex = 10;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &AccessForm::button2_Click);
 			// 
 			// button1
 			// 
@@ -185,10 +186,8 @@ namespace UserApp {
 					 MessageBox::Show("Usuario NO EXISTE");
 					 return;
 				 }
-				 
-				 int value = 0;
-
-				 if (String::Compare(p->password,psw))
+				 				 
+				 if (!String::Compare(p->password,psw))
 				 {	 PrincipalForm ^ psForm = gcnew PrincipalForm();
 					 psForm->tittle = " Bienvenido a AppStansa " + p->name + " ";
 					 Visible = false;
@@ -201,5 +200,8 @@ namespace UserApp {
 
 
 	}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 Close();
+}
 };
 }

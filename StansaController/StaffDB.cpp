@@ -8,19 +8,19 @@ using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Data::SqlClient;
 
 //Metodos de la Clase StaffDB
-void StaffDB::Add(Staff^ s){
+void StaffDB::Add(Staff^ s, int idModuloStansa){
 	//Paso 1: Obtener la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO StaffDB" +
-		" (dni, name, apellido_Paterno, apellido_Materno, sexo, username, password, hora_entrada, hora_salida, puesto)" +
-		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10)";
+	comm->CommandText = "INSERT INTO Staff_DB" +
+		" (dni, name, lastName, secondLastName, sex, username, password, inTime, outTime, position, idModStansa)" +
+		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
@@ -30,7 +30,7 @@ void StaffDB::Add(Staff^ s){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
@@ -41,6 +41,8 @@ void StaffDB::Add(Staff^ s){
 		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p10 = gcnew SqlParameter("@p10",
 		System::Data::SqlDbType::VarChar);
+	SqlParameter^ p11 = gcnew SqlParameter("@p11",
+		System::Data::SqlDbType::Int);
 
 	p1->Value = s->dni; //String
 	p2->Value = s->name; //String
@@ -62,24 +64,24 @@ void StaffDB::Add(Staff^ s){
 	comm->Parameters->Add(p7);
 	comm->Parameters->Add(p8);
 	comm->Parameters->Add(p9);
-	comm->Parameters->Add(10);
+	comm->Parameters->Add(p10);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
 	conn->Close();
 }
-void StaffDB::Update(Staff^ s){
+void StaffDB::Update(Staff^ s, int idModuloStansa){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE CustomerDB " +
-		"SET dni=@p1, name=@p2, apellido_Paterno=@p3, apellido_Materno=@p4, sexo=@p5, username=@p6 , password=@p7 , hora_entrada=@p8 , hora_salida=@p9, puesto=@p10  " +
+	comm->CommandText = "UPDATE Staff_DB " +
+		"SET dni=@p1, name=@p2, lastName=@p3, secondLastName=@p4, sex=@p5, username=@p6 , password=@p7 , inTime=@p8 , outTime=@p9, position=@p10  " +
 		" WHERE id=@p11";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -90,7 +92,7 @@ void StaffDB::Update(Staff^ s){
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
-		System::Data::SqlDbType::Char);
+		System::Data::SqlDbType::Char, 1);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p7 = gcnew SqlParameter("@p7",
@@ -125,8 +127,8 @@ void StaffDB::Update(Staff^ s){
 	comm->Parameters->Add(p7);
 	comm->Parameters->Add(p8);
 	comm->Parameters->Add(p9);
-	comm->Parameters->Add(10);
-	comm->Parameters->Add(11);
+	comm->Parameters->Add(p10);
+	comm->Parameters->Add(p11);
 	//Paso 3: Ejecución de la sentencia
 	comm->ExecuteNonQuery();
 	//Paso 4: Cerramos la conexión con la BD
@@ -137,12 +139,12 @@ void StaffDB::Delete(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM StaffDB " +
+	comm->CommandText = "DELETE FROM Staff_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -160,12 +162,12 @@ Staff^ StaffDB::QueryById(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM StaffDB " +
+	comm->CommandText = "SELECT * FROM Staff_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -183,22 +185,22 @@ Staff^ StaffDB::QueryById(int id){
 			s->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			s->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			s->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			s->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			s->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			s->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			s->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
-		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
-		if (dr["puesto"] != System::DBNull::Value)
-			s->puesto = safe_cast<String ^>(dr["puesto"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+		if (dr["position"] != System::DBNull::Value)
+			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -210,13 +212,13 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM StaffDB " +
-		"WHERE id=@p1";
+	comm->CommandText = "SELECT * FROM Staff_DB " +
+		"WHERE dni=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
 	p1->Value = dni; // String
@@ -233,22 +235,22 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 			s->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			s->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			s->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			s->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			s->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			s->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			s->sexo = Char::Parse( safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
-		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
-		if (dr["puesto"] != System::DBNull::Value)
-			s->puesto = safe_cast<String ^>(dr["puesto"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+		if (dr["position"] != System::DBNull::Value)
+			s->puesto = safe_cast<String ^>(dr["position"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -260,12 +262,12 @@ List<Staff^>^ StaffDB::QueryAll(){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM StaffDB";
+	comm->CommandText = "SELECT * FROM Staff_DB";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
@@ -279,22 +281,22 @@ List<Staff^>^ StaffDB::QueryAll(){
 			s->dni = safe_cast<String^>(dr["dni"]);
 		if (dr["name"] != System::DBNull::Value)
 			s->name = safe_cast<String ^>(dr["name"]);
-		if (dr["apellido_Paterno"] != System::DBNull::Value)
-			s->apellido_Paterno = safe_cast<String ^>(dr["apellido_Paterno"]);
-		if (dr["apellido_Materno"] != System::DBNull::Value)
-			s->apellido_Materno = safe_cast<String ^>(dr["apellido_Materno"]);
-		if (dr["sexo"] != System::DBNull::Value)
-			s->sexo = safe_cast<char>(dr["sexo"]);
+		if (dr["lastName"] != System::DBNull::Value)
+			s->apellido_Paterno = safe_cast<String ^>(dr["lastName"]);
+		if (dr["secondLastName"] != System::DBNull::Value)
+			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
+		if (dr["sex"] != System::DBNull::Value)
+			s->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
 			s->password = safe_cast<String ^>(dr["password"]);
-		if (dr["hora_entrada"] != System::DBNull::Value)
-			s->hora_entrada = safe_cast<DateTime ^>(dr["hora_entrada"]);
-		if (dr["hora_salida"] != System::DBNull::Value)
-			s->hora_salida = safe_cast<DateTime ^>(dr["hora_salida"]);
-		if (dr["puesto"] != System::DBNull::Value)
-			s->puesto = safe_cast<String ^>(dr["puesto"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			s->hora_entrada = dr->GetDateTime(8); //Columna 8 "inTime"
+		if (dr["outTime"] != System::DBNull::Value)
+			s->hora_salida = dr->GetDateTime(9); //Columna 9 "outTime"
+		if (dr["position"] != System::DBNull::Value)
+			s->puesto = safe_cast<String ^>(dr["position"]);
 		staffList->Add(s);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD

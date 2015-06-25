@@ -14,13 +14,13 @@ void ModuloStansaDB::Add(ModuloStansa^ m){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO ModStansaDB " +
-		" (name, place, MaquinasOperativas)" +
+	comm->CommandText = "INSERT INTO ModStansa_DB " +
+		" (name, place, operativeMachines)" +
 		" VALUES (@p1,@p2,@p3)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -51,13 +51,13 @@ void ModuloStansaDB::Update(ModuloStansa^ m){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE ModStansaDB " +
-		"SET  name=@p1, place=@p2, MaquinaOperativas=@p3 " +
+	comm->CommandText = "UPDATE ModStansa_DB " +
+		"SET  name=@p1, place=@p2, operativeMachines=@p3 " +
 		" WHERE id=@p4";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::VarChar);
@@ -91,12 +91,12 @@ void ModuloStansaDB::Delete(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM ModStansaDB " +
+	comm->CommandText = "DELETE FROM ModStansa_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -116,12 +116,12 @@ ModuloStansa^ ModuloStansaDB::QueryById(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ModStansaDB " +
+	comm->CommandText = "SELECT * FROM ModStansa_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -139,8 +139,8 @@ ModuloStansa^ ModuloStansaDB::QueryById(int id){
 			m->name = safe_cast<String ^>(dr["name"]);
 		if (dr["place"] != System::DBNull::Value)
 			m->place = safe_cast<String ^>(dr["place"]);
-		if (dr["MaquinasOperativas"] != System::DBNull::Value)
-			m->MaquinasOperativas = safe_cast<int>(dr["MaquinasOperativas"]);
+		if (dr["operativeMachines"] != System::DBNull::Value)
+			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);
 		
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
@@ -149,23 +149,24 @@ ModuloStansa^ ModuloStansaDB::QueryById(int id){
 	return m;	
 	
 }
-ModuloStansa^ ModuloStansaDB::QueryByPlace(String^ place){ 
+ModuloStansa^ ModuloStansaDB::QueryLikePlace(String^ place){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ModStansaDB " +
-		"WHERE place=@p1";
-	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::Int);
-	p1->Value = place; // String
+	comm->CommandText = "SELECT * FROM ModStansa_DB " +
+		"WHERE place LIKE @p1";
 
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::VarChar);
+	p1->Value = "%" + place + "%"; // String
 	comm->Parameters->Add(p1);
+
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
 	//Paso 3.1: Procesamos los resultados	
@@ -177,9 +178,8 @@ ModuloStansa^ ModuloStansaDB::QueryByPlace(String^ place){
 			m->name = safe_cast<String ^>(dr["name"]);
 		if (dr["place"] != System::DBNull::Value)
 			m->place = safe_cast<String ^>(dr["place"]);
-		if (dr["MaquinasOperativas"] != System::DBNull::Value)
-			m->MaquinasOperativas = safe_cast<int>(dr["MaquinasOperativas"]);
-
+		if (dr["operativeMachines"] != System::DBNull::Value)
+			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -193,12 +193,12 @@ List<ModuloStansa^>^ ModuloStansaDB::QueryAll(){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM ModStansaDB ";
+	comm->CommandText = "SELECT * FROM ModStansa_DB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
