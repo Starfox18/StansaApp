@@ -24,6 +24,7 @@ namespace UserApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			RefreshDGVStansas();
 		}
 
 	protected:
@@ -71,7 +72,7 @@ namespace UserApp {
 			// 
 			this->statusDGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->statusDGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->name, this->waiting });
-			this->statusDGV->Location = System::Drawing::Point(198, 174);
+			this->statusDGV->Location = System::Drawing::Point(200, 166);
 			this->statusDGV->Name = L"statusDGV";
 			this->statusDGV->Size = System::Drawing::Size(252, 150);
 			this->statusDGV->TabIndex = 0;
@@ -122,7 +123,7 @@ namespace UserApp {
 				
 				List<int> listWaitingPeople;
 
-				for (int i = 0; i < 4; i++)
+				for (int i = 1; i < 5; i++)
 				{
 					listWaitingPeople[i] = GetQuantityOfWaitingPeople(i);
 				}
@@ -141,7 +142,7 @@ namespace UserApp {
 	
 	}
 	private: System::Void StatusForm_Load(System::Object^  sender, System::EventArgs^  e) {
-				 RefreshDGVStansas();
+//				 RefreshDGVStansas();
 
 	}
 	};

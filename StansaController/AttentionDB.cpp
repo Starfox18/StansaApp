@@ -13,7 +13,7 @@ void AttentionDB::Add(Attention^ a){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
@@ -65,7 +65,7 @@ void AttentionDB::Update(Attention^ a){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
@@ -121,7 +121,7 @@ void AttentionDB::Delete(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
@@ -144,7 +144,7 @@ Attention^ AttentionDB::QueryById(int id){
 	SqlConnection^ conn;
 	conn = gcnew SqlConnection();
 	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
-		"Database=inf237;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
 	conn->Open();
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
@@ -208,6 +208,53 @@ List<Attention^>^ AttentionDB::QueryAll(){
 			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
+		if (dr["hora_fin"] != System::DBNull::Value)
+			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
+		if (dr["estado"] != System::DBNull::Value)
+			a->estado = safe_cast<String^>(dr["estado"]);
+		if (dr["customerId"] != System::DBNull::Value)
+			a->customer->id = safe_cast<int>(dr["customerId"]);
+		if (dr["moduloStansaId"] != System::DBNull::Value)
+			a->moduloStansa->id = safe_cast<int>(dr["moduloStansaId"]);
+		if (dr["staffId"] != System::DBNull::Value)
+			a->staff->id = safe_cast<int>(dr["staffId"]);
+
+		AttentionList->Add(a);
+	}
+	//Paso 4: Cerramos el dataReader y la conexión con la BD
+	dr->Close();
+	conn->Close();
+	return AttentionList;
+}
+List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){ 
+	SqlConnection^ conn;
+	conn = gcnew SqlConnection();
+	conn->ConnectionString = "Server=inti.lab.inf.pucp.edu.pe;" +
+		"Database=inf237g4;User ID=inf237g4;Password=wXJ7FpUHDnYKjf89;";
+	conn->Open();
+	//Paso 2: Preparamos la sentencia
+	SqlCommand^ comm = gcnew SqlCommand();
+	comm->Connection = conn;
+	comm->CommandText = "SELECT * FROM AttentionDB " +
+		"WHERE idModStansa=@p1";
+	SqlParameter^ p1 = gcnew SqlParameter("@p1",
+		System::Data::SqlDbType::Int);
+	p1->Value = modulo->id;
+	comm->Parameters->Add(p1);
+
+	//Paso 3: Ejecución de la sentencia
+	SqlDataReader^ dr = comm->ExecuteReader();
+	//Paso 3.1: Procesamos los resultados
+	List<Attention^>^ AttentionList = gcnew List<Attention^>();
+	while (dr->Read()){
+		Attention^a = gcnew Attention();
+		a->id = (int)dr["id"];
+		if (dr["fecha"] != System::DBNull::Value)
+			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
+		if (dr["n_orden"] != System::DBNull::Value)
+			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
 			a->hora_ini = safe_cast<String^>(dr["hora_ini"]);
 		if (dr["hora_fin"] != System::DBNull::Value)
@@ -228,7 +275,6 @@ List<Attention^>^ AttentionDB::QueryAll(){
 	conn->Close();
 	return AttentionList;
 }
-List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){ return nullptr; }
 List<Attention^>^ AttentionDB::QueryAllByModuloStansaAndCustomer(ModuloStansa^ modulo, Customer^ customer){ return nullptr; }
 List<Attention^>^ AttentionDB::QueryAllByModuloStansaAndStaff(ModuloStansa^ modulo, Staff^ staff){ return nullptr; }
 List<Attention^>^ AttentionDB::QueryAllByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha){ return nullptr; }
