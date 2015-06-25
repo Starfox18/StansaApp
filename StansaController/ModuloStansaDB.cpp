@@ -141,7 +141,6 @@ ModuloStansa^ ModuloStansaDB::QueryById(int id){
 			m->place = safe_cast<String ^>(dr["place"]);
 		if (dr["operativeMachines"] != System::DBNull::Value)
 			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);
-		
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD
 	dr->Close();
@@ -207,18 +206,14 @@ List<ModuloStansa^>^ ModuloStansaDB::QueryAll(){
 	while (dr->Read()){
 		ModuloStansa^m = gcnew ModuloStansa();
 		m->id = (int)dr["id"];
-		SqlParameter^ p1 = gcnew SqlParameter("@p1",
-			System::Data::SqlDbType::VarChar);
-		SqlParameter^ p2 = gcnew SqlParameter("@p2",
-			System::Data::SqlDbType::VarChar);
-		SqlParameter^ p3 = gcnew SqlParameter("@p3",
-			System::Data::SqlDbType::Int);
-
-
-		p1->Value = m->name; //String
-		p2->Value = m->place; //String
-		p3->Value = m->MaquinasOperativas; //Int
-				
+		m->name = safe_cast<String^>(dr["name"]);
+		if (dr["name"] != System::DBNull::Value)
+			m->name = safe_cast<String ^>(dr["name"]);
+		if (dr["place"] != System::DBNull::Value)
+			m->place = safe_cast<String ^>(dr["place"]);
+		if (dr["operativeMachines"] != System::DBNull::Value)
+			m->MaquinasOperativas = safe_cast<int>(dr["operativeMachines"]);
+		
 		ModStansaList->Add(m);
 	}
 	//Paso 4: Cerramos el dataReader y la conexión con la BD

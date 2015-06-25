@@ -43,6 +43,8 @@ namespace UserApp {
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  waiting;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  OperatingMachines;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Staff;
 	protected:
 
 	protected:
@@ -65,16 +67,21 @@ namespace UserApp {
 			this->statusDGV = (gcnew System::Windows::Forms::DataGridView());
 			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->waiting = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->OperatingMachines = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Staff = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusDGV))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// statusDGV
 			// 
 			this->statusDGV->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->statusDGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->name, this->waiting });
-			this->statusDGV->Location = System::Drawing::Point(200, 166);
+			this->statusDGV->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->name, this->waiting,
+					this->OperatingMachines, this->Staff
+			});
+			this->statusDGV->Location = System::Drawing::Point(117, 164);
 			this->statusDGV->Name = L"statusDGV";
-			this->statusDGV->Size = System::Drawing::Size(252, 150);
+			this->statusDGV->Size = System::Drawing::Size(444, 150);
 			this->statusDGV->TabIndex = 0;
 			this->statusDGV->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StatusForm::dataGridView1_CellContentClick);
 			// 
@@ -87,6 +94,16 @@ namespace UserApp {
 			// 
 			this->waiting->HeaderText = L"Personas en Espera";
 			this->waiting->Name = L"waiting";
+			// 
+			// OperatingMachines
+			// 
+			this->OperatingMachines->HeaderText = L"Maquinas Operativas";
+			this->OperatingMachines->Name = L"OperatingMachines";
+			// 
+			// Staff
+			// 
+			this->Staff->HeaderText = L"Personas Trabajando";
+			this->Staff->Name = L"Staff";
 			// 
 			// StatusForm
 			// 
@@ -136,7 +153,8 @@ namespace UserApp {
 				for (int i = 0; i < modStansaList->Count; i++){
 					statusDGV->Rows->Add(gcnew array<String^>{
 						modStansaList[i]->name,
-						listWaitingPeople[i]});
+						listWaitingPeople[i],
+					""+modStansaList[i]->MaquinasOperativas});
 				}
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {

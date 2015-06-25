@@ -59,6 +59,8 @@ namespace UserApp {
 	private: System::Windows::Forms::Label^  facultadlbl;
 	private: System::Windows::Forms::TextBox^  codetxt;
 	private: System::Windows::Forms::TextBox^  facultadtxt;
+	private: System::Windows::Forms::TextBox^  password2txt;
+	private: System::Windows::Forms::Label^  Password2lbl;
 
 
 
@@ -105,6 +107,8 @@ namespace UserApp {
 			this->facultadlbl = (gcnew System::Windows::Forms::Label());
 			this->codetxt = (gcnew System::Windows::Forms::TextBox());
 			this->facultadtxt = (gcnew System::Windows::Forms::TextBox());
+			this->password2txt = (gcnew System::Windows::Forms::TextBox());
+			this->Password2lbl = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// dnilbl
@@ -215,8 +219,10 @@ namespace UserApp {
 			// 
 			this->passwordtxt->Location = System::Drawing::Point(500, 98);
 			this->passwordtxt->Name = L"passwordtxt";
+			this->passwordtxt->PasswordChar = '*';
 			this->passwordtxt->Size = System::Drawing::Size(100, 20);
 			this->passwordtxt->TabIndex = 12;
+			this->passwordtxt->TextChanged += gcnew System::EventHandler(this, &RegisterForm::passwordtxt_TextChanged);
 			// 
 			// button1
 			// 
@@ -257,7 +263,7 @@ namespace UserApp {
 			// codelbl
 			// 
 			this->codelbl->AutoSize = true;
-			this->codelbl->Location = System::Drawing::Point(383, 145);
+			this->codelbl->Location = System::Drawing::Point(380, 170);
 			this->codelbl->Name = L"codelbl";
 			this->codelbl->Size = System::Drawing::Size(66, 13);
 			this->codelbl->TabIndex = 17;
@@ -267,7 +273,7 @@ namespace UserApp {
 			// facultadlbl
 			// 
 			this->facultadlbl->AutoSize = true;
-			this->facultadlbl->Location = System::Drawing::Point(386, 184);
+			this->facultadlbl->Location = System::Drawing::Point(383, 202);
 			this->facultadlbl->Name = L"facultadlbl";
 			this->facultadlbl->Size = System::Drawing::Size(45, 13);
 			this->facultadlbl->TabIndex = 18;
@@ -275,23 +281,43 @@ namespace UserApp {
 			// 
 			// codetxt
 			// 
-			this->codetxt->Location = System::Drawing::Point(500, 137);
+			this->codetxt->Location = System::Drawing::Point(500, 163);
 			this->codetxt->Name = L"codetxt";
 			this->codetxt->Size = System::Drawing::Size(100, 20);
 			this->codetxt->TabIndex = 19;
 			// 
 			// facultadtxt
 			// 
-			this->facultadtxt->Location = System::Drawing::Point(500, 184);
+			this->facultadtxt->Location = System::Drawing::Point(500, 195);
 			this->facultadtxt->Name = L"facultadtxt";
 			this->facultadtxt->Size = System::Drawing::Size(100, 20);
 			this->facultadtxt->TabIndex = 20;
+			// 
+			// password2txt
+			// 
+			this->password2txt->Location = System::Drawing::Point(500, 125);
+			this->password2txt->Name = L"password2txt";
+			this->password2txt->PasswordChar = '°';
+			this->password2txt->Size = System::Drawing::Size(100, 20);
+			this->password2txt->TabIndex = 21;
+			// 
+			// Password2lbl
+			// 
+			this->Password2lbl->AutoSize = true;
+			this->Password2lbl->Location = System::Drawing::Point(383, 131);
+			this->Password2lbl->Name = L"Password2lbl";
+			this->Password2lbl->Size = System::Drawing::Size(94, 13);
+			this->Password2lbl->TabIndex = 22;
+			this->Password2lbl->Text = L"Repita contraseña";
+			this->Password2lbl->Click += gcnew System::EventHandler(this, &RegisterForm::Password2lbl_Click);
 			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(721, 397);
+			this->Controls->Add(this->Password2lbl);
+			this->Controls->Add(this->password2txt);
 			this->Controls->Add(this->facultadtxt);
 			this->Controls->Add(this->codetxt);
 			this->Controls->Add(this->facultadlbl);
@@ -331,31 +357,41 @@ namespace UserApp {
 				 String^ password = passwordtxt->Text;
 				 String^ codigo = codetxt->Text;
 				 String^ facultad = facultadtxt->Text;
+				 String^ password2 = password2txt->Text;
 
-				 if (femalerdb->Checked){
-					 
-					 sexo = 'F';
-					 
+				 if (password2 == password){
+
+
+
+					 if (femalerdb->Checked){
+
+						 sexo = 'F';
+
+					 }
+					 else{
+						 sexo = 'M';
+					 }
+
+					 Customer^ p = gcnew Customer();
+					 p->dni = dni;
+					 p->apellido_Paterno = lastname;
+					 p->apellido_Materno = secondlastname;
+					 p->name = name;
+					 p->sexo = sexo;
+					 p->username = user;
+					 p->password = password;
+					 p->codigoPUCP = codigo;
+					 p->facultad = facultad;
+
+					 StansaManager::AddCustomer(p);
+
+					 Close();
 				 }
-				 else{
-					 sexo = 'M';
+
+				 else
+				 {
+					 MessageBox::Show("Contraseñas no coinciden");
 				 }
-
-				 Customer^ p = gcnew Customer();
-				 p->dni=dni ;
-				 p->apellido_Paterno = lastname;
-				 p->apellido_Materno = secondlastname;
-				 p->name = name;
-				 p->sexo = sexo;
-				 p->username = user;
-				 p->password = password;
-				 p->codigoPUCP = codigo;
-				 p->facultad = facultad;
-
-				 StansaManager::AddCustomer(p);
-
-				 Close();
-
 	}
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 Close();
@@ -363,6 +399,10 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void RegisterForm_Load(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void codelbl_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void passwordtxt_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void Password2lbl_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

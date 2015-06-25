@@ -255,22 +255,22 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
 	while (dr->Read()){
 		Attention^a = gcnew Attention();
 		a->id = (int)dr["id"];
-		if (dr["fecha"] != System::DBNull::Value)
-			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
-		if (dr["n_orden"] != System::DBNull::Value)
-			a->n_orden = safe_cast<int>(dr["n_orden"]);
-		if (dr["hora_ini"] != System::DBNull::Value)
-			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
-		if (dr["hora_fin"] != System::DBNull::Value)
-			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
-		if (dr["estado"] != System::DBNull::Value)
-			a->estado = safe_cast<String^>(dr["estado"]);
-		if (dr["customerId"] != System::DBNull::Value)
-			a->customer->id = safe_cast<int>(dr["customerId"]);
-		if (dr["moduloStansaId"] != System::DBNull::Value)
-			a->moduloStansa->id = safe_cast<int>(dr["moduloStansaId"]);
-		if (dr["staffId"] != System::DBNull::Value)
-			a->staff->id = safe_cast<int>(dr["staffId"]);
+		if (dr["date"] != System::DBNull::Value)
+			a->fecha = safe_cast<DateTime^>(dr["date"]);
+		if (dr["orderNumber"] != System::DBNull::Value)
+			a->n_orden = safe_cast<int>(dr["orderNumber"]);
+		if (dr["inTime"] != System::DBNull::Value)
+			a->hora_ini = safe_cast<DateTime^>(dr["inTime"]);
+		if (dr["outTime"] != System::DBNull::Value)
+			a->hora_fin = safe_cast<DateTime^>(dr["outTime"]);
+		if (dr["status"] != System::DBNull::Value)
+			a->estado = safe_cast<String^>(dr["status"]);
+		if (dr["idCustomer"] != System::DBNull::Value)
+			a->customer->id = safe_cast<int>(dr["idCustomer"]);
+		if (dr["idModStansa"] != System::DBNull::Value)
+			a->moduloStansa->id = safe_cast<int>(dr["idModStansa"]);
+		if (dr["idStaff"] != System::DBNull::Value)
+			a->staff->id = safe_cast<int>(dr["idStaff"]);
 
 		AttentionList->Add(a);
 	}
