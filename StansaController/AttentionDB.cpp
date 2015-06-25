@@ -18,17 +18,17 @@ void AttentionDB::Add(Attention^ a){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "INSERT INTO AttentionDB " +
+	comm->CommandText = "INSERT INTO Attention_DB " +
 		" (fecha, n_orden, hora_ini, hora_fin, estado, customerId, moduloStansaId, staffId)" +
 		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Date);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -70,17 +70,17 @@ void AttentionDB::Update(Attention^ a){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "UPDATE AttentionDB " +
+	comm->CommandText = "UPDATE Attention_DB " +
 		"SET fecha=@p1, n_orden=@p2, hora_ini=@p3, hora_fin=@p4, estado=@p5, customerId=@p6 , moduloStansaId=@p7 , staffId=@p8  " +
 		" WHERE id=@p9";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Date);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::Time);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -126,7 +126,7 @@ void AttentionDB::Delete(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "DELETE FROM AttentionDB " +
+	comm->CommandText = "DELETE FROM Attention_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -149,7 +149,7 @@ Attention^ AttentionDB::QueryById(int id){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM AttentionDB " +
+	comm->CommandText = "SELECT * FROM Attention_DB " +
 		"WHERE id=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -168,9 +168,9 @@ Attention^ AttentionDB::QueryById(int id){
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
-			a->hora_ini = safe_cast<String^>(dr["hora_ini"]);
+			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
 		if (dr["hora_fin"] != System::DBNull::Value)
-			a->hora_fin = safe_cast<String^>(dr["hora_fin"]);
+			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
 		if (dr["estado"] != System::DBNull::Value)
 			a->estado = safe_cast<String^>(dr["estado"]);
 		if (dr["customerId"] != System::DBNull::Value)
@@ -195,7 +195,7 @@ List<Attention^>^ AttentionDB::QueryAll(){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM AttentionDB ";
+	comm->CommandText = "SELECT * FROM Attention_DB ";
 
 	//Paso 3: Ejecución de la sentencia
 	SqlDataReader^ dr = comm->ExecuteReader();
@@ -237,7 +237,7 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
 	//Paso 2: Preparamos la sentencia
 	SqlCommand^ comm = gcnew SqlCommand();
 	comm->Connection = conn;
-	comm->CommandText = "SELECT * FROM AttentionDB " +
+	comm->CommandText = "SELECT * FROM Attention_DB " +
 		"WHERE idModStansa=@p1";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
 		System::Data::SqlDbType::Int);
@@ -256,9 +256,9 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
 		if (dr["n_orden"] != System::DBNull::Value)
 			a->n_orden = safe_cast<int>(dr["n_orden"]);
 		if (dr["hora_ini"] != System::DBNull::Value)
-			a->hora_ini = safe_cast<String^>(dr["hora_ini"]);
+			a->hora_ini = safe_cast<DateTime^>(dr["hora_ini"]);
 		if (dr["hora_fin"] != System::DBNull::Value)
-			a->hora_fin = safe_cast<String^>(dr["hora_fin"]);
+			a->hora_fin = safe_cast<DateTime^>(dr["hora_fin"]);
 		if (dr["estado"] != System::DBNull::Value)
 			a->estado = safe_cast<String^>(dr["estado"]);
 		if (dr["customerId"] != System::DBNull::Value)

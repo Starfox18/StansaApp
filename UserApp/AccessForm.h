@@ -78,6 +78,7 @@ namespace UserApp {
 			// 
 			this->txtPsw->Location = System::Drawing::Point(213, 78);
 			this->txtPsw->Name = L"txtPsw";
+			this->txtPsw->PasswordChar = '•';
 			this->txtPsw->Size = System::Drawing::Size(100, 20);
 			this->txtPsw->TabIndex = 17;
 			// 

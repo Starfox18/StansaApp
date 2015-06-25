@@ -121,19 +121,22 @@ namespace UserApp {
 
 	public: void RefreshDGVStansas(){
 				
-				List<int> listWaitingPeople;
+				String^ value;
+				List<String^>^ listWaitingPeople = gcnew List<String^>();
+				
 
-				for (int i = 1; i < 5; i++)
+				for (int i = 0; i < 4; i++)
 				{
-					listWaitingPeople[i] = GetQuantityOfWaitingPeople(i);
+					value = "" + GetQuantityOfWaitingPeople(i + 1);
+					listWaitingPeople->Add(value);
 				}
 
-				List<ModuloStansa^>^ personList = StansaManager::QueryAllModuloStansa();
+				List<ModuloStansa^>^ modStansaList = StansaManager::QueryAllModuloStansa();
 				statusDGV->Rows->Clear();
-				for (int i = 0; i < personList->Count; i++){
+				for (int i = 0; i < modStansaList->Count; i++){
 					statusDGV->Rows->Add(gcnew array<String^>{
-							personList[i]->name ,
-							" " + listWaitingPeople[i]});
+						modStansaList[i]->name,
+						listWaitingPeople[i]});
 				}
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
