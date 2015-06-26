@@ -24,7 +24,6 @@ namespace UserApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			RefreshDGVStansas();
 		}
 
 	protected:
@@ -163,7 +162,7 @@ namespace UserApp {
 	
 	}
 	private: System::Void StatusForm_Load(System::Object^  sender, System::EventArgs^  e) {
-//				 RefreshDGVStansas();
+			 RefreshDGVStansas();
 
 	}
 	};
