@@ -18,6 +18,8 @@ namespace UserApp {
 	{
 	public:
 		String^ tittle;
+	private: System::Windows::Forms::Button^  Salesbtn;
+	public:
 		Thread^ tittle_thread;
 
 		PrincipalForm(void)
@@ -82,6 +84,7 @@ namespace UserApp {
 		{
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->Salesbtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button2
@@ -103,11 +106,22 @@ namespace UserApp {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &PrincipalForm::button1_Click);
 			// 
+			// Salesbtn
+			// 
+			this->Salesbtn->Location = System::Drawing::Point(290, 214);
+			this->Salesbtn->Name = L"Salesbtn";
+			this->Salesbtn->Size = System::Drawing::Size(249, 108);
+			this->Salesbtn->TabIndex = 6;
+			this->Salesbtn->Text = L"Historial de Ventas";
+			this->Salesbtn->UseVisualStyleBackColor = true;
+			this->Salesbtn->Click += gcnew System::EventHandler(this, &PrincipalForm::Salesbtn_Click);
+			// 
 			// PrincipalForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(910, 545);
+			this->Controls->Add(this->Salesbtn);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->IsMdiContainer = true;
@@ -126,6 +140,11 @@ namespace UserApp {
 	}
 private: System::Void PrincipalForm_Load(System::Object^  sender, System::EventArgs^  e) {
 			 crear();
+}
+private: System::Void Salesbtn_Click(System::Object^  sender, System::EventArgs^  e) {
+
+
+
 }
 };
 }
