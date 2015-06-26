@@ -55,12 +55,16 @@ namespace UserApp {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^  statusDGV;
-	protected:
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  waiting;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  OperatingMachines;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Staff;
+	protected:
+
+
+
+
+
 	protected:
 
 	protected:
@@ -97,7 +101,7 @@ namespace UserApp {
 			});
 			this->statusDGV->Location = System::Drawing::Point(12, 12);
 			this->statusDGV->Name = L"statusDGV";
-			this->statusDGV->Size = System::Drawing::Size(448, 355);
+			this->statusDGV->Size = System::Drawing::Size(560, 355);
 			this->statusDGV->TabIndex = 0;
 			this->statusDGV->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StatusForm::dataGridView1_CellContentClick);
 			// 
@@ -105,6 +109,7 @@ namespace UserApp {
 			// 
 			this->name->HeaderText = L"Nombre";
 			this->name->Name = L"name";
+			this->name->Width = 200;
 			// 
 			// waiting
 			// 
@@ -125,7 +130,7 @@ namespace UserApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(474, 375);
+			this->ClientSize = System::Drawing::Size(556, 375);
 			this->Controls->Add(this->statusDGV);
 			this->Name = L"StatusForm";
 			this->Text = L"Estado de Stansas";

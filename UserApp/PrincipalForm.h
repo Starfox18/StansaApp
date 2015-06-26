@@ -86,18 +86,18 @@ namespace UserApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(461, 141);
+			this->button2->Location = System::Drawing::Point(477, 45);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(139, 39);
+			this->button2->Size = System::Drawing::Size(239, 96);
 			this->button2->TabIndex = 4;
 			this->button2->Text = L"Servicios / Modulo";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(135, 141);
+			this->button1->Location = System::Drawing::Point(100, 45);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(139, 39);
+			this->button1->Size = System::Drawing::Size(239, 96);
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"Disponibilidad Stansa";
 			this->button1->UseVisualStyleBackColor = true;
@@ -107,12 +107,13 @@ namespace UserApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(734, 321);
+			this->ClientSize = System::Drawing::Size(910, 545);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->IsMdiContainer = true;
 			this->Name = L"PrincipalForm";
-			this->Text = L"PrincipalForm";
+			this->Text = L"Applicación Stansa";
+			this->Load += gcnew System::EventHandler(this, &PrincipalForm::PrincipalForm_Load);
 			this->ResumeLayout(false);
 
 		}
@@ -123,5 +124,8 @@ namespace UserApp {
 				 psForm->ShowDialog();
 
 	}
+private: System::Void PrincipalForm_Load(System::Object^  sender, System::EventArgs^  e) {
+			 crear();
+}
 };
 }

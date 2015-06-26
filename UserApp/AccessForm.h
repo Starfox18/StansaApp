@@ -172,7 +172,7 @@ namespace UserApp {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"AccessForm";
-			this->Text = L"AccessForm";
+			this->Text = L"Identificación";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -192,7 +192,8 @@ namespace UserApp {
 				 				 
 				 if (!String::Compare(p->password,psw))
 				 {	 PrincipalForm ^ psForm = gcnew PrincipalForm();
-					 psForm->tittle = " Bienvenido a AppStansa " + p->name + " ";
+					 psForm->tittle = " Bienvenido a AppStansa : " + p->name + " " + p->apellido_Paterno+
+										" " + p->apellido_Materno + " ";
 					 Visible = false;
 					 psForm->ShowDialog();
 					 //this->

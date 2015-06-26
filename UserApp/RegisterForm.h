@@ -61,7 +61,8 @@ namespace UserApp {
 
 	private: System::Windows::Forms::TextBox^  password2txt;
 	private: System::Windows::Forms::Label^  Password2lbl;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::ComboBox^  cbxfacultad;
+
 
 
 
@@ -109,7 +110,7 @@ namespace UserApp {
 			this->codetxt = (gcnew System::Windows::Forms::TextBox());
 			this->password2txt = (gcnew System::Windows::Forms::TextBox());
 			this->Password2lbl = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->cbxfacultad = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// dnilbl
@@ -306,26 +307,26 @@ namespace UserApp {
 			this->Password2lbl->Text = L"Repita contraseña";
 			this->Password2lbl->Click += gcnew System::EventHandler(this, &RegisterForm::Password2lbl_Click);
 			// 
-			// comboBox1
+			// cbxfacultad
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
+			this->cbxfacultad->FormattingEnabled = true;
+			this->cbxfacultad->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
 				L"Facultad de Arte", L"Facultad de Artes y Ciencias de la Comunicación",
 					L"Facultad de Ciencias e Ingeniería", L"Facultad de Derecho", L"Facultad de Humanidades", L"Facultad de Educación", L"Facultad de Artes Escénicas",
-					L"Facultad de Ciencias Sociales"
+					L"Facultad de Ciencias Sociales", L"Facultad de Estudios Generales Letras", L"Facultad de Estudios Generales Ciencias"
 			});
-			this->comboBox1->Location = System::Drawing::Point(360, 117);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(131, 21);
-			this->comboBox1->TabIndex = 23;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &RegisterForm::comboBox1_SelectedIndexChanged);
+			this->cbxfacultad->Location = System::Drawing::Point(360, 117);
+			this->cbxfacultad->Name = L"cbxfacultad";
+			this->cbxfacultad->Size = System::Drawing::Size(131, 21);
+			this->cbxfacultad->TabIndex = 23;
+			this->cbxfacultad->SelectedIndexChanged += gcnew System::EventHandler(this, &RegisterForm::comboBox1_SelectedIndexChanged);
 			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(518, 198);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->cbxfacultad);
 			this->Controls->Add(this->Password2lbl);
 			this->Controls->Add(this->password2txt);
 			this->Controls->Add(this->codetxt);
@@ -349,7 +350,7 @@ namespace UserApp {
 			this->Controls->Add(this->lastnamelbl);
 			this->Controls->Add(this->dnilbl);
 			this->Name = L"RegisterForm";
-			this->Text = L"RegisterForm";
+			this->Text = L"Registro";
 			this->Load += gcnew System::EventHandler(this, &RegisterForm::RegisterForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -365,7 +366,7 @@ namespace UserApp {
 				 String^ user = usertxt->Text;
 				 String^ password = passwordtxt->Text;
 				 String^ codigo = codetxt->Text;
-				 String^ facultad = facultadtxt->Text;
+				 String^ facultad = cbxfacultad->Text;
 				 String^ password2 = password2txt->Text;
 
 				 if (password2 == password){
