@@ -200,6 +200,7 @@ namespace UserApp {
 			// lastnametxt
 			// 
 			this->lastnametxt->Location = System::Drawing::Point(107, 51);
+			this->lastnametxt->MaxLength = 8;
 			this->lastnametxt->Name = L"lastnametxt";
 			this->lastnametxt->Size = System::Drawing::Size(139, 20);
 			this->lastnametxt->TabIndex = 9;
@@ -214,6 +215,7 @@ namespace UserApp {
 			// usertxt
 			// 
 			this->usertxt->Location = System::Drawing::Point(360, 31);
+			this->usertxt->MaxLength = 10;
 			this->usertxt->Name = L"usertxt";
 			this->usertxt->Size = System::Drawing::Size(132, 20);
 			this->usertxt->TabIndex = 11;
@@ -221,6 +223,7 @@ namespace UserApp {
 			// passwordtxt
 			// 
 			this->passwordtxt->Location = System::Drawing::Point(360, 51);
+			this->passwordtxt->MaxLength = 15;
 			this->passwordtxt->Name = L"passwordtxt";
 			this->passwordtxt->PasswordChar = '~';
 			this->passwordtxt->Size = System::Drawing::Size(132, 20);
@@ -285,6 +288,7 @@ namespace UserApp {
 			// codetxt
 			// 
 			this->codetxt->Location = System::Drawing::Point(360, 96);
+			this->codetxt->MaxLength = 8;
 			this->codetxt->Name = L"codetxt";
 			this->codetxt->Size = System::Drawing::Size(132, 20);
 			this->codetxt->TabIndex = 19;
@@ -292,6 +296,7 @@ namespace UserApp {
 			// password2txt
 			// 
 			this->password2txt->Location = System::Drawing::Point(361, 73);
+			this->password2txt->MaxLength = 15;
 			this->password2txt->Name = L"password2txt";
 			this->password2txt->PasswordChar = '~';
 			this->password2txt->Size = System::Drawing::Size(131, 20);
@@ -362,7 +367,7 @@ namespace UserApp {
 				 String^ lastname = lastnametxt->Text;
 				 String^ secondlastname = secondlastnametxt->Text;
 				 String^ name = nametxt->Text;
-				 char sexo;
+				 String^ sexo;
 				 String^ user = usertxt->Text;
 				 String^ password = passwordtxt->Text;
 				 String^ codigo = codetxt->Text;
@@ -374,13 +379,9 @@ namespace UserApp {
 
 
 					 if (femalerdb->Checked){
-
-						 sexo = 'F';
-
-					 }
+						  sexo = "F"; }
 					 else{
-						 sexo = 'M';
-					 }
+						 sexo = "M"; }
 
 					 Customer^ p = gcnew Customer();
 					 p->dni = dni;

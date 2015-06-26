@@ -14,7 +14,7 @@ namespace FotoLibrary {
 		String^ name; // Nombre de la Persona
 		String^ apellido_Paterno;
 		String^ apellido_Materno;
-		char sexo; // Masculino(M) Femenino(F)
+		String^ sexo; // Masculino(M) Femenino(F)
 		String^ username;  // para el logeo con su cuenta
 		String^ password;  // para el logeo con su cuenta
 	}; // Fin Clase Persona
