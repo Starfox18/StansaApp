@@ -43,8 +43,10 @@ namespace UserApp {
 	private: System::Windows::Forms::Label^  secondlastnamelbl;
 	private: System::Windows::Forms::Label^  userlbl;
 	private: System::Windows::Forms::Label^  passwordlbl;
-	private: System::Windows::Forms::RadioButton^  manrdb;
-	private: System::Windows::Forms::RadioButton^  femalerdb;
+	private: System::Windows::Forms::RadioButton^  maleRBT;
+	private: System::Windows::Forms::RadioButton^  femaleRBT;
+
+
 	private: System::Windows::Forms::Label^  sexlbl;
 	private: System::Windows::Forms::TextBox^  dnitxt;
 	private: System::Windows::Forms::TextBox^  lastnametxt;
@@ -62,6 +64,7 @@ namespace UserApp {
 	private: System::Windows::Forms::TextBox^  password2txt;
 	private: System::Windows::Forms::Label^  Password2lbl;
 	private: System::Windows::Forms::ComboBox^  cbxfacultad;
+	private: System::Windows::Forms::Label^  label1;
 
 
 
@@ -93,8 +96,8 @@ namespace UserApp {
 			this->secondlastnamelbl = (gcnew System::Windows::Forms::Label());
 			this->userlbl = (gcnew System::Windows::Forms::Label());
 			this->passwordlbl = (gcnew System::Windows::Forms::Label());
-			this->manrdb = (gcnew System::Windows::Forms::RadioButton());
-			this->femalerdb = (gcnew System::Windows::Forms::RadioButton());
+			this->maleRBT = (gcnew System::Windows::Forms::RadioButton());
+			this->femaleRBT = (gcnew System::Windows::Forms::RadioButton());
 			this->sexlbl = (gcnew System::Windows::Forms::Label());
 			this->dnitxt = (gcnew System::Windows::Forms::TextBox());
 			this->lastnametxt = (gcnew System::Windows::Forms::TextBox());
@@ -111,12 +114,13 @@ namespace UserApp {
 			this->password2txt = (gcnew System::Windows::Forms::TextBox());
 			this->Password2lbl = (gcnew System::Windows::Forms::Label());
 			this->cbxfacultad = (gcnew System::Windows::Forms::ComboBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// dnilbl
 			// 
 			this->dnilbl->AutoSize = true;
-			this->dnilbl->Location = System::Drawing::Point(18, 34);
+			this->dnilbl->Location = System::Drawing::Point(37, 76);
 			this->dnilbl->Name = L"dnilbl";
 			this->dnilbl->Size = System::Drawing::Size(26, 13);
 			this->dnilbl->TabIndex = 0;
@@ -125,7 +129,7 @@ namespace UserApp {
 			// lastnamelbl
 			// 
 			this->lastnamelbl->AutoSize = true;
-			this->lastnamelbl->Location = System::Drawing::Point(15, 54);
+			this->lastnamelbl->Location = System::Drawing::Point(34, 96);
 			this->lastnamelbl->Name = L"lastnamelbl";
 			this->lastnamelbl->Size = System::Drawing::Size(84, 13);
 			this->lastnamelbl->TabIndex = 1;
@@ -134,7 +138,7 @@ namespace UserApp {
 			// secondlastnamelbl
 			// 
 			this->secondlastnamelbl->AutoSize = true;
-			this->secondlastnamelbl->Location = System::Drawing::Point(15, 76);
+			this->secondlastnamelbl->Location = System::Drawing::Point(34, 118);
 			this->secondlastnamelbl->Name = L"secondlastnamelbl";
 			this->secondlastnamelbl->Size = System::Drawing::Size(86, 13);
 			this->secondlastnamelbl->TabIndex = 2;
@@ -143,7 +147,7 @@ namespace UserApp {
 			// userlbl
 			// 
 			this->userlbl->AutoSize = true;
-			this->userlbl->Location = System::Drawing::Point(261, 34);
+			this->userlbl->Location = System::Drawing::Point(366, 76);
 			this->userlbl->Name = L"userlbl";
 			this->userlbl->Size = System::Drawing::Size(43, 13);
 			this->userlbl->TabIndex = 3;
@@ -152,39 +156,39 @@ namespace UserApp {
 			// passwordlbl
 			// 
 			this->passwordlbl->AutoSize = true;
-			this->passwordlbl->Location = System::Drawing::Point(261, 54);
+			this->passwordlbl->Location = System::Drawing::Point(366, 96);
 			this->passwordlbl->Name = L"passwordlbl";
 			this->passwordlbl->Size = System::Drawing::Size(61, 13);
 			this->passwordlbl->TabIndex = 4;
 			this->passwordlbl->Text = L"Contraseña";
 			// 
-			// manrdb
+			// maleRBT
 			// 
-			this->manrdb->AutoSize = true;
-			this->manrdb->Location = System::Drawing::Point(100, 118);
-			this->manrdb->Name = L"manrdb";
-			this->manrdb->Size = System::Drawing::Size(73, 17);
-			this->manrdb->TabIndex = 5;
-			this->manrdb->TabStop = true;
-			this->manrdb->Text = L"Masculino";
-			this->manrdb->UseVisualStyleBackColor = true;
-			this->manrdb->CheckedChanged += gcnew System::EventHandler(this, &RegisterForm::manrdb_CheckedChanged);
+			this->maleRBT->AutoSize = true;
+			this->maleRBT->Location = System::Drawing::Point(140, 160);
+			this->maleRBT->Name = L"maleRBT";
+			this->maleRBT->Size = System::Drawing::Size(73, 17);
+			this->maleRBT->TabIndex = 5;
+			this->maleRBT->TabStop = true;
+			this->maleRBT->Text = L"Masculino";
+			this->maleRBT->UseVisualStyleBackColor = true;
+			this->maleRBT->CheckedChanged += gcnew System::EventHandler(this, &RegisterForm::manrdb_CheckedChanged);
 			// 
-			// femalerdb
+			// femaleRBT
 			// 
-			this->femalerdb->AutoSize = true;
-			this->femalerdb->Location = System::Drawing::Point(175, 118);
-			this->femalerdb->Name = L"femalerdb";
-			this->femalerdb->Size = System::Drawing::Size(71, 17);
-			this->femalerdb->TabIndex = 6;
-			this->femalerdb->TabStop = true;
-			this->femalerdb->Text = L"Femenino";
-			this->femalerdb->UseVisualStyleBackColor = true;
+			this->femaleRBT->AutoSize = true;
+			this->femaleRBT->Location = System::Drawing::Point(244, 160);
+			this->femaleRBT->Name = L"femaleRBT";
+			this->femaleRBT->Size = System::Drawing::Size(71, 17);
+			this->femaleRBT->TabIndex = 6;
+			this->femaleRBT->TabStop = true;
+			this->femaleRBT->Text = L"Femenino";
+			this->femaleRBT->UseVisualStyleBackColor = true;
 			// 
 			// sexlbl
 			// 
 			this->sexlbl->AutoSize = true;
-			this->sexlbl->Location = System::Drawing::Point(18, 120);
+			this->sexlbl->Location = System::Drawing::Point(37, 162);
 			this->sexlbl->Name = L"sexlbl";
 			this->sexlbl->Size = System::Drawing::Size(31, 13);
 			this->sexlbl->TabIndex = 7;
@@ -192,60 +196,63 @@ namespace UserApp {
 			// 
 			// dnitxt
 			// 
-			this->dnitxt->Location = System::Drawing::Point(107, 31);
+			this->dnitxt->Location = System::Drawing::Point(126, 73);
+			this->dnitxt->MaxLength = 8;
 			this->dnitxt->Name = L"dnitxt";
-			this->dnitxt->Size = System::Drawing::Size(139, 20);
-			this->dnitxt->TabIndex = 8;
+			this->dnitxt->Size = System::Drawing::Size(204, 20);
+			this->dnitxt->TabIndex = 1;
 			// 
 			// lastnametxt
 			// 
-			this->lastnametxt->Location = System::Drawing::Point(107, 51);
-			this->lastnametxt->MaxLength = 8;
+			this->lastnametxt->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+			this->lastnametxt->Location = System::Drawing::Point(126, 93);
+			this->lastnametxt->MaxLength = 1000;
 			this->lastnametxt->Name = L"lastnametxt";
-			this->lastnametxt->Size = System::Drawing::Size(139, 20);
-			this->lastnametxt->TabIndex = 9;
+			this->lastnametxt->Size = System::Drawing::Size(204, 20);
+			this->lastnametxt->TabIndex = 2;
 			// 
 			// secondlastnametxt
 			// 
-			this->secondlastnametxt->Location = System::Drawing::Point(107, 73);
+			this->secondlastnametxt->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+			this->secondlastnametxt->Location = System::Drawing::Point(126, 115);
 			this->secondlastnametxt->Name = L"secondlastnametxt";
-			this->secondlastnametxt->Size = System::Drawing::Size(139, 20);
-			this->secondlastnametxt->TabIndex = 10;
+			this->secondlastnametxt->Size = System::Drawing::Size(204, 20);
+			this->secondlastnametxt->TabIndex = 3;
 			// 
 			// usertxt
 			// 
-			this->usertxt->Location = System::Drawing::Point(360, 31);
+			this->usertxt->Location = System::Drawing::Point(465, 73);
 			this->usertxt->MaxLength = 10;
 			this->usertxt->Name = L"usertxt";
-			this->usertxt->Size = System::Drawing::Size(132, 20);
-			this->usertxt->TabIndex = 11;
+			this->usertxt->Size = System::Drawing::Size(213, 20);
+			this->usertxt->TabIndex = 7;
 			// 
 			// passwordtxt
 			// 
-			this->passwordtxt->Location = System::Drawing::Point(360, 51);
+			this->passwordtxt->Location = System::Drawing::Point(465, 93);
 			this->passwordtxt->MaxLength = 15;
 			this->passwordtxt->Name = L"passwordtxt";
 			this->passwordtxt->PasswordChar = '~';
-			this->passwordtxt->Size = System::Drawing::Size(132, 20);
-			this->passwordtxt->TabIndex = 12;
+			this->passwordtxt->Size = System::Drawing::Size(213, 20);
+			this->passwordtxt->TabIndex = 8;
 			this->passwordtxt->TextChanged += gcnew System::EventHandler(this, &RegisterForm::passwordtxt_TextChanged);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(98, 152);
+			this->button1->Location = System::Drawing::Point(117, 194);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 13;
+			this->button1->TabIndex = 12;
 			this->button1->Text = L"Agregar";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &RegisterForm::button1_Click);
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(253, 152);
+			this->button2->Location = System::Drawing::Point(358, 194);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 14;
+			this->button2->TabIndex = 13;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &RegisterForm::button2_Click);
@@ -253,7 +260,7 @@ namespace UserApp {
 			// namelbl
 			// 
 			this->namelbl->AutoSize = true;
-			this->namelbl->Location = System::Drawing::Point(18, 99);
+			this->namelbl->Location = System::Drawing::Point(37, 141);
 			this->namelbl->Name = L"namelbl";
 			this->namelbl->Size = System::Drawing::Size(44, 13);
 			this->namelbl->TabIndex = 15;
@@ -261,15 +268,16 @@ namespace UserApp {
 			// 
 			// nametxt
 			// 
-			this->nametxt->Location = System::Drawing::Point(107, 96);
+			this->nametxt->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+			this->nametxt->Location = System::Drawing::Point(126, 138);
 			this->nametxt->Name = L"nametxt";
-			this->nametxt->Size = System::Drawing::Size(139, 20);
-			this->nametxt->TabIndex = 16;
+			this->nametxt->Size = System::Drawing::Size(204, 20);
+			this->nametxt->TabIndex = 4;
 			// 
 			// codelbl
 			// 
 			this->codelbl->AutoSize = true;
-			this->codelbl->Location = System::Drawing::Point(261, 99);
+			this->codelbl->Location = System::Drawing::Point(366, 141);
 			this->codelbl->Name = L"codelbl";
 			this->codelbl->Size = System::Drawing::Size(67, 13);
 			this->codelbl->TabIndex = 17;
@@ -279,7 +287,7 @@ namespace UserApp {
 			// facultadlbl
 			// 
 			this->facultadlbl->AutoSize = true;
-			this->facultadlbl->Location = System::Drawing::Point(261, 120);
+			this->facultadlbl->Location = System::Drawing::Point(366, 162);
 			this->facultadlbl->Name = L"facultadlbl";
 			this->facultadlbl->Size = System::Drawing::Size(48, 13);
 			this->facultadlbl->TabIndex = 18;
@@ -287,25 +295,25 @@ namespace UserApp {
 			// 
 			// codetxt
 			// 
-			this->codetxt->Location = System::Drawing::Point(360, 96);
+			this->codetxt->Location = System::Drawing::Point(465, 138);
 			this->codetxt->MaxLength = 8;
 			this->codetxt->Name = L"codetxt";
-			this->codetxt->Size = System::Drawing::Size(132, 20);
-			this->codetxt->TabIndex = 19;
+			this->codetxt->Size = System::Drawing::Size(213, 20);
+			this->codetxt->TabIndex = 10;
 			// 
 			// password2txt
 			// 
-			this->password2txt->Location = System::Drawing::Point(361, 73);
+			this->password2txt->Location = System::Drawing::Point(466, 115);
 			this->password2txt->MaxLength = 15;
 			this->password2txt->Name = L"password2txt";
 			this->password2txt->PasswordChar = '~';
-			this->password2txt->Size = System::Drawing::Size(131, 20);
-			this->password2txt->TabIndex = 21;
+			this->password2txt->Size = System::Drawing::Size(212, 20);
+			this->password2txt->TabIndex = 9;
 			// 
 			// Password2lbl
 			// 
 			this->Password2lbl->AutoSize = true;
-			this->Password2lbl->Location = System::Drawing::Point(261, 76);
+			this->Password2lbl->Location = System::Drawing::Point(366, 118);
 			this->Password2lbl->Name = L"Password2lbl";
 			this->Password2lbl->Size = System::Drawing::Size(94, 13);
 			this->Password2lbl->TabIndex = 22;
@@ -320,17 +328,30 @@ namespace UserApp {
 					L"Facultad de Ciencias e Ingeniería", L"Facultad de Derecho", L"Facultad de Humanidades", L"Facultad de Educación", L"Facultad de Artes Escénicas",
 					L"Facultad de Ciencias Sociales", L"Facultad de Estudios Generales Letras", L"Facultad de Estudios Generales Ciencias"
 			});
-			this->cbxfacultad->Location = System::Drawing::Point(360, 117);
+			this->cbxfacultad->Location = System::Drawing::Point(465, 159);
 			this->cbxfacultad->Name = L"cbxfacultad";
-			this->cbxfacultad->Size = System::Drawing::Size(131, 21);
-			this->cbxfacultad->TabIndex = 23;
+			this->cbxfacultad->Size = System::Drawing::Size(213, 21);
+			this->cbxfacultad->TabIndex = 11;
 			this->cbxfacultad->SelectedIndexChanged += gcnew System::EventHandler(this, &RegisterForm::comboBox1_SelectedIndexChanged);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(88, 29);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(522, 20);
+			this->label1->TabIndex = 24;
+			this->label1->Text = L"TODOS LOS CAMPOS SON ESTRICTAMENTE OBLIGATORIOS";
 			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(518, 198);
+			this->ClientSize = System::Drawing::Size(706, 232);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->cbxfacultad);
 			this->Controls->Add(this->Password2lbl);
 			this->Controls->Add(this->password2txt);
@@ -347,8 +368,8 @@ namespace UserApp {
 			this->Controls->Add(this->lastnametxt);
 			this->Controls->Add(this->dnitxt);
 			this->Controls->Add(this->sexlbl);
-			this->Controls->Add(this->femalerdb);
-			this->Controls->Add(this->manrdb);
+			this->Controls->Add(this->femaleRBT);
+			this->Controls->Add(this->maleRBT);
 			this->Controls->Add(this->passwordlbl);
 			this->Controls->Add(this->userlbl);
 			this->Controls->Add(this->secondlastnamelbl);
@@ -363,79 +384,108 @@ namespace UserApp {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		String^ dni = dnitxt->Text;
-		String^ lastname = lastnametxt->Text;
-		String^ secondlastname = secondlastnametxt->Text;
-		String^ name = nametxt->Text;
+		//VALIDACION Y OBTENCIÓN DE DNI
+		String^ dni = dnitxt->Text->Trim();
+		if (dni == ""){
+			MessageBox::Show("Campo DNI solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE APELLIDO PATERNO
+		String^ lastname = lastnametxt->Text->Trim();
+		if (lastname == ""){
+			MessageBox::Show("Campo APELLIDO PATERNO solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE APELLIDO MATERNO
+		String^ secondlastname = secondlastnametxt->Text->Trim();
+		if (secondlastname == ""){
+			MessageBox::Show("Campo APELLIDO MATERNO solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios"); 
+			return;
+		}
+		//VALIDACION Y OBTENCIÓN DE NOMBRE
+		String^ name = nametxt->Text->Trim();
+		if (name == ""){
+			MessageBox::Show("Campo NOMBRE solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios"); 
+			return;
+		}
+		//VALIDACION Y OBTENCIÓN DE SEXO
 		String^ sexo;
-		String^ user = usertxt->Text;
-		String^ password = passwordtxt->Text;
-		String^ codigo = codetxt->Text;
-		String^ facultad = cbxfacultad->Text;
-		String^ password2 = password2txt->Text;
+		if (femaleRBT->Checked){sexo = "F";	}
+		else if(maleRBT->Checked){sexo = "M";}
 
+		if (sexo == nullptr){
+			MessageBox::Show("Campo SEXO solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE USUARIO
+		String^ user = usertxt->Text->Trim();
+		if (user == ""){
+			MessageBox::Show("Campo USUARIO solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE CONTRASEÑA
+		String^ password = passwordtxt->Text->Trim();
+		if (password == ""){
+			MessageBox::Show("Campo CONTRASEÑA solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE CODIGO PUCP
+		String^ codigo = codetxt->Text->Trim();
+		if (codigo == ""){
+			MessageBox::Show("Campo CODIGO PUCP solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE FACULTAD
+		String^ facultad = cbxfacultad->Text->Trim();
+		if (facultad == ""){
+			MessageBox::Show("Campo FACULTAD solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+		//VALIDACION Y OBTENCIÓN DE CONTRASEÑA 2
+		String^ password2 = password2txt->Text->Trim();
+		if (password2 == ""){
+			MessageBox::Show("Campo CONFIRMACION DE CONTRASEÑA solicitado VACIO." +
+				" Recuerde que todos los campos son obligatorios");
+			return; }
+
+		//VALIDACIONES DE CODIGO PUCP | USER | DNI | REGISTRADOS PREVIAMENTE
 		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codigo);
-		Customer ^q = StansaManager::QueryCustomerByDni(dni);
-		Customer ^r = StansaManager::QueryCustomerByUser(user);
-
-		if (p == nullptr)
-		{
-			if (q == nullptr)
-			{
-				if (r == nullptr)
-				{
-
-					if (password2 == password){
-
-
-
-						if (femalerdb->Checked){
-							sexo = "F";
-						}
-						else{
-							sexo = "M";
-						}
-
-						Customer^ p = gcnew Customer();
-						p->dni = dni;
-						p->apellido_Paterno = lastname;
-						p->apellido_Materno = secondlastname;
-						p->name = name;
-						p->sexo = sexo;
-						p->username = user;
-						p->password = password;
-						p->codigoPUCP = codigo;
-						p->facultad = facultad;
-
-						StansaManager::AddCustomer(p);
-
-						Close();
-					}
-
-
-
-
-					else
-					{
-						MessageBox::Show("Contraseñas no coinciden");
-					}
-
-				}
-
-				else
-				{
-					MessageBox::Show("User ya usado");
-				}
-			}
-			else
-			{
-				MessageBox::Show("DNI ya usado");
-			}
+		if (!(p == nullptr)){
+			MessageBox::Show("Código PUCP ya registrado, NO PUEDE volvera registrarse."+
+								" Solicite suss credenciales a Soporte ténico");
+			return;
 		}
-		else{
-
-			MessageBox::Show("Usario Existente");
+		p = StansaManager::QueryCustomerByDni(dni);
+		if (!(p == nullptr)){
+			MessageBox::Show("DNI ya registrado, NO PUEDE volvera registrarse." +
+				" Solicite suss credenciales a Soporte ténico");
+			return;
 		}
+		p = StansaManager::QueryCustomerByUser(user);
+		if (!(p == nullptr)){
+			MessageBox::Show("Nombre de usuario ya usado previamente, elija otro nombre de Usuario");
+			return;
+		}
+
+		if (password2 == password){
+				 p = gcnew Customer();
+				 p->dni = dni;
+				 p->apellido_Paterno = lastname;
+				 p->apellido_Materno = secondlastname;
+				 p->name = name;
+				 p->sexo = sexo;
+				 p->username = user;
+				 p->password = password;
+				 p->codigoPUCP = codigo;
+				 p->facultad = facultad;
+
+				 StansaManager::AddCustomer(p);
+				 Close();
+			 }
+		else
+				{MessageBox::Show("Contraseñas no coinciden");	}
 	}
 				
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {

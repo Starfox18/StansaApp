@@ -28,9 +28,14 @@ namespace UserApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			
+		}	
+
+		void Createthread(){
 			threadRefresh = gcnew Thread(gcnew ThreadStart(this, &StatusForm::MyRun));
 			threadRefresh->Start();
-		}		
+		}
+
 		delegate void delegateRefreshStansaStatus();
 
 		void MyRun(){
@@ -103,7 +108,8 @@ namespace UserApp {
 			});
 			this->statusDGV->Location = System::Drawing::Point(12, 12);
 			this->statusDGV->Name = L"statusDGV";
-			this->statusDGV->Size = System::Drawing::Size(560, 355);
+			this->statusDGV->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->statusDGV->Size = System::Drawing::Size(544, 355);
 			this->statusDGV->TabIndex = 0;
 			this->statusDGV->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StatusForm::dataGridView1_CellContentClick);
 			// 
@@ -132,7 +138,7 @@ namespace UserApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(556, 375);
+			this->ClientSize = System::Drawing::Size(568, 375);
 			this->Controls->Add(this->statusDGV);
 			this->Name = L"StatusForm";
 			this->Text = L"Estado de Stansas";
@@ -163,15 +169,15 @@ namespace UserApp {
 				
 				String^ value;
 				List<String^>^ listWaitingPeople = gcnew List<String^>();
-				
+				List<ModuloStansa^>^ modStansaList = StansaManager::QueryAllModuloStansa();
 
-				for (int i = 0; i < 4; i++)
+				for (int i = 0; i < modStansaList->Count; i++)
 				{
 					value = "" + GetQuantityOfWaitingPeople(i + 1);
 					listWaitingPeople->Add(value);
 				}
 
-				List<ModuloStansa^>^ modStansaList = StansaManager::QueryAllModuloStansa();
+				
 				statusDGV->Rows->Clear();
 				for (int i = 0; i < modStansaList->Count; i++){
 					statusDGV->Rows->Add(gcnew array<String^>{
@@ -186,8 +192,7 @@ namespace UserApp {
 	
 	}
 	private: System::Void StatusForm_Load(System::Object^  sender, System::EventArgs^  e) {
-			 RefreshDGVStansas();
-
+		Createthread();
 	}
 	};
 }
