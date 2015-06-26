@@ -11,6 +11,7 @@ namespace UserApp {
 	using namespace FotoLibrary;
 	using namespace StansaController;
 	using namespace System::Collections::Generic;
+	using namespace Threading;
 
 	/// <summary>
 	/// Resumen de StatusForm
@@ -19,7 +20,7 @@ namespace UserApp {
 	{
 
 	private:
-		Thread ^myThread;
+		Thread ^threadRefresh;
 	public:
 		StatusForm(void)
 		{
@@ -27,13 +28,15 @@ namespace UserApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			myThread = gcnew Thread(gcnew ThreadStart(this, &StatusForm::MyRun));
-			myThread->Start();
-		}
+			threadRefresh = gcnew Thread(gcnew ThreadStart(this, &StatusForm::MyRun));
+			threadRefresh->Start();
+		}		
+		delegate void delegateRefreshStansaStatus();
+
 		void MyRun(){
 			int time = 0;
 			while (true) {
-				Invoke(gcnew delegateRefreshProducts(this, &StatusForm::RefreshDGVStansas));
+				Invoke(gcnew delegateRefreshStansaStatus(this, &StatusForm::RefreshDGVStansas));
 				Random^ rnd = gcnew Random();
 				time = rnd->Next() % 10 + 1;
 				Thread::Sleep(time * 1000);
@@ -41,7 +44,6 @@ namespace UserApp {
 					return;
 			}
 		}
-		delegate void delegateRefreshProducts();
 
 	protected:
 		/// <summary>
