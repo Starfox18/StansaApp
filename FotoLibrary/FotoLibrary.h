@@ -33,6 +33,7 @@ namespace FotoLibrary {
 		DateTime^ hora_entrada; //Hora de Entrada al Trabajo
 		DateTime^ hora_salida; //Hora de Salida del Trabajo
 		String^ puesto;
+		int idModStansa;
 	}; // Fin Clase Staff
 
 	public ref class Product

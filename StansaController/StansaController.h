@@ -1,3 +1,5 @@
+
+
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace FotoLibrary;
@@ -28,6 +30,7 @@ namespace StansaController {
 			void Update(Staff^ s, int idModuloStansa); //Necesito saber a que Stansa pertenece
 			void Delete(int id);
 			Staff^ QueryById(int id);
+			List<Staff^>^ QueryByIdModStansa(int idMod);
 			Staff^ QueryByDni(String^ dni);
 			List<Staff^>^ QueryAll();
 	}; //Fin Clase StaffDB
@@ -74,6 +77,7 @@ namespace StansaController {
 			List<Attention^>^ QueryAllByModuloStansaAndFecha(ModuloStansa^ modulo, String^ fecha);
 			List<Attention^>^ QueryAllByModuloStansaFechaAndCustomer(ModuloStansa^ modulo, String^ fecha, Customer^ customer);
 			List<Attention^>^ QueryAllByModuloStansaFechaAndStaff(ModuloStansa^ modulo, String^ fecha, Staff^ staff);
+
 	}; //Fin Clase ModuloStansaDB
 
 	public ref class SaleDB
@@ -117,6 +121,7 @@ namespace StansaController {
 			static Staff^ QueryStaffById(int id);
 			static Staff^ QueryStaffByDni(String^ dni);
 			static List<Staff^>^ QueryAllStaff();
+			static List<Staff^>^ QueryStaffByIdModStansa(int idMod);
 	public:
 			//metodos de clase globlales para Product
 			static void AddProduct(Product^ p);
