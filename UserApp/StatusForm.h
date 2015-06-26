@@ -79,9 +79,9 @@ namespace UserApp {
 				this->name, this->waiting,
 					this->OperatingMachines, this->Staff
 			});
-			this->statusDGV->Location = System::Drawing::Point(117, 164);
+			this->statusDGV->Location = System::Drawing::Point(12, 12);
 			this->statusDGV->Name = L"statusDGV";
-			this->statusDGV->Size = System::Drawing::Size(444, 150);
+			this->statusDGV->Size = System::Drawing::Size(448, 355);
 			this->statusDGV->TabIndex = 0;
 			this->statusDGV->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &StatusForm::dataGridView1_CellContentClick);
 			// 
@@ -109,10 +109,10 @@ namespace UserApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(696, 448);
+			this->ClientSize = System::Drawing::Size(474, 375);
 			this->Controls->Add(this->statusDGV);
 			this->Name = L"StatusForm";
-			this->Text = L"StatusForm";
+			this->Text = L"Estado de Stansas";
 			this->Load += gcnew System::EventHandler(this, &StatusForm::StatusForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusDGV))->EndInit();
 			this->ResumeLayout(false);
