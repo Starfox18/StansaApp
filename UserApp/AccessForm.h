@@ -89,6 +89,7 @@ namespace UserApp {
 			this->txtUser->Name = L"txtUser";
 			this->txtUser->Size = System::Drawing::Size(100, 20);
 			this->txtUser->TabIndex = 16;
+			this->txtUser->TextChanged += gcnew System::EventHandler(this, &AccessForm::txtUser_TextChanged);
 			// 
 			// label4
 			// 
@@ -182,6 +183,8 @@ namespace UserApp {
 				 
 				 String^ user = txtUser->Text->Trim();
 				 String^ psw = txtPsw->Text->Trim();
+				 
+				
 				 Customer^ p = StansaManager::QueryCustomerByUser(user);
 				 
 				 while (p == nullptr)
@@ -212,6 +215,8 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 			 RegisterForm ^psForm = gcnew RegisterForm();
 			 psForm->ShowDialog();
 
+}
+private: System::Void txtUser_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

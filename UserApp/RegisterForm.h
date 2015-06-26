@@ -363,47 +363,81 @@ namespace UserApp {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 String^ dni = dnitxt->Text;
-				 String^ lastname = lastnametxt->Text;
-				 String^ secondlastname = secondlastnametxt->Text;
-				 String^ name = nametxt->Text;
-				 String^ sexo;
-				 String^ user = usertxt->Text;
-				 String^ password = passwordtxt->Text;
-				 String^ codigo = codetxt->Text;
-				 String^ facultad = cbxfacultad->Text;
-				 String^ password2 = password2txt->Text;
+		String^ dni = dnitxt->Text;
+		String^ lastname = lastnametxt->Text;
+		String^ secondlastname = secondlastnametxt->Text;
+		String^ name = nametxt->Text;
+		String^ sexo;
+		String^ user = usertxt->Text;
+		String^ password = passwordtxt->Text;
+		String^ codigo = codetxt->Text;
+		String^ facultad = cbxfacultad->Text;
+		String^ password2 = password2txt->Text;
 
-				 if (password2 == password){
+		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codigo);
+		Customer ^q = StansaManager::QueryCustomerByDni(dni);
+		Customer ^r = StansaManager::QueryCustomerByUser(user);
+
+		if (p == nullptr)
+		{
+			if (q == nullptr)
+			{
+				if (r == nullptr)
+				{
+
+					if (password2 == password){
 
 
 
-					 if (femalerdb->Checked){
-						  sexo = "F"; }
-					 else{
-						 sexo = "M"; }
+						if (femalerdb->Checked){
+							sexo = "F";
+						}
+						else{
+							sexo = "M";
+						}
 
-					 Customer^ p = gcnew Customer();
-					 p->dni = dni;
-					 p->apellido_Paterno = lastname;
-					 p->apellido_Materno = secondlastname;
-					 p->name = name;
-					 p->sexo = sexo;
-					 p->username = user;
-					 p->password = password;
-					 p->codigoPUCP = codigo;
-					 p->facultad = facultad;
+						Customer^ p = gcnew Customer();
+						p->dni = dni;
+						p->apellido_Paterno = lastname;
+						p->apellido_Materno = secondlastname;
+						p->name = name;
+						p->sexo = sexo;
+						p->username = user;
+						p->password = password;
+						p->codigoPUCP = codigo;
+						p->facultad = facultad;
 
-					 StansaManager::AddCustomer(p);
+						StansaManager::AddCustomer(p);
 
-					 Close();
-				 }
+						Close();
+					}
 
-				 else
-				 {
-					 MessageBox::Show("Contraseñas no coinciden");
-				 }
+
+
+
+					else
+					{
+						MessageBox::Show("Contraseñas no coinciden");
+					}
+
+				}
+
+				else
+				{
+					MessageBox::Show("User ya usado");
+				}
+			}
+			else
+			{
+				MessageBox::Show("DNI ya usado");
+			}
+		}
+		else{
+
+			MessageBox::Show("Usario Existente");
+		}
 	}
+				
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 Close();
 }
