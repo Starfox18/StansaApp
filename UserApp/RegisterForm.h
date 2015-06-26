@@ -167,6 +167,7 @@ namespace UserApp {
 			this->manrdb->TabStop = true;
 			this->manrdb->Text = L"Masculino";
 			this->manrdb->UseVisualStyleBackColor = true;
+			this->manrdb->CheckedChanged += gcnew System::EventHandler(this, &RegisterForm::manrdb_CheckedChanged);
 			// 
 			// femalerdb
 			// 
@@ -413,6 +414,8 @@ private: System::Void passwordtxt_TextChanged(System::Object^  sender, System::E
 private: System::Void Password2lbl_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void manrdb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
