@@ -156,12 +156,26 @@ namespace UserApp {
 				List<Attention^>^stansaList = StansaManager::QueryAllAttentionByModuloStansa(modulo);
 				for (int i = 0; i < stansaList->Count; i++)
 				{
-					if (!String::Compare("esperando", stansaList[i]->estado))
+					if (!String::Compare("Esperando", stansaList[i]->estado))
 					{
 						count++;
 					}
 				}
+				return count;
+				}
 
+	public: int GetQuantityOfWorkingStaff (int idModStansa){
+
+				int count = 0;
+				ModuloStansa^ modulo = StansaManager::QueryModuloStansaById(idModStansa);
+				List<FotoLibrary::Staff^>^ staffList = StansaManager::QueryStaffByIdModStansa(idModStansa);
+				for (int i = 0; i < staffList->Count; i++)
+				{
+					if (idModStansa==staffList[i]->idModStansa)
+					{
+						count++;
+					}
+				}
 				return count;
 				}
 
@@ -169,6 +183,7 @@ namespace UserApp {
 				
 				String^ value;
 				List<String^>^ listWaitingPeople = gcnew List<String^>();
+				List<String^>^ listWorkingStaff = gcnew List<String^>();
 				List<ModuloStansa^>^ modStansaList = StansaManager::QueryAllModuloStansa();
 
 				for (int i = 0; i < modStansaList->Count; i++)
@@ -177,13 +192,20 @@ namespace UserApp {
 					listWaitingPeople->Add(value);
 				}
 
+				for (int i = 0; i < modStansaList->Count; i++)
+				{
+					value = "" + GetQuantityOfWorkingStaff(i + 1);
+					listWorkingStaff->Add(value);
+				}
+
 				
 				statusDGV->Rows->Clear();
 				for (int i = 0; i < modStansaList->Count; i++){
 					statusDGV->Rows->Add(gcnew array<String^>{
 						modStansaList[i]->name,
-						listWaitingPeople[i],
-					""+modStansaList[i]->MaquinasOperativas});
+							listWaitingPeople[i],
+							"" + modStansaList[i]->MaquinasOperativas,
+							listWorkingStaff[i]});
 				}
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {

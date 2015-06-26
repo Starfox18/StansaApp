@@ -199,6 +199,7 @@ namespace UserApp {
 										" " + p->apellido_Materno + " ";
 					 Visible = false;
 					 psForm->ShowDialog();
+					 Close();
 					 //this->
 				}
 				 else

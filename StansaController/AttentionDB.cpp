@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StansaController.h"
 
+
 using namespace StansaController;
 using namespace System::IO;
 using namespace System::Runtime::Serialization;
@@ -22,13 +23,13 @@ void AttentionDB::Add(Attention^ a){
 		" (fecha, n_orden, hora_ini, hora_fin, estado, customerId, moduloStansaId, staffId)" +
 		" VALUES (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -74,13 +75,13 @@ void AttentionDB::Update(Attention^ a){
 		"SET fecha=@p1, n_orden=@p2, hora_ini=@p3, hora_fin=@p4, estado=@p5, customerId=@p6 , moduloStansaId=@p7 , staffId=@p8  " +
 		" WHERE id=@p9";
 	SqlParameter^ p1 = gcnew SqlParameter("@p1",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p2 = gcnew SqlParameter("@p2",
 		System::Data::SqlDbType::Int);
 	SqlParameter^ p3 = gcnew SqlParameter("@p3",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p4 = gcnew SqlParameter("@p4",
-		System::Data::SqlDbType::VarChar);
+		System::Data::SqlDbType::DateTime);
 	SqlParameter^ p5 = gcnew SqlParameter("@p5",
 		System::Data::SqlDbType::VarChar);
 	SqlParameter^ p6 = gcnew SqlParameter("@p6",
@@ -164,6 +165,9 @@ Attention^ AttentionDB::QueryById(int id){
 	Attention ^ a = nullptr;
 	if (dr->Read()){
 		a = gcnew Attention();
+		a->customer = gcnew Customer();
+		a->moduloStansa = gcnew ModuloStansa();
+		a->staff = gcnew Staff();
 		a->id = (int)dr["id"];
 		if (dr["fecha"] != System::DBNull::Value)
 			a->fecha = safe_cast<DateTime^>(dr["fecha"]);
@@ -205,6 +209,9 @@ List<Attention^>^ AttentionDB::QueryAll(){
 	List<Attention^>^ AttentionList = gcnew List<Attention^>();
 	while (dr->Read()){
 		Attention^a = gcnew Attention();
+		a->customer = gcnew Customer();
+		a->moduloStansa = gcnew ModuloStansa();
+		a->staff = gcnew Staff();
 		a->id = (int)dr["id"];
 		if (dr["date"] != System::DBNull::Value)
 			a->fecha = safe_cast<DateTime^>(dr["date"]);
@@ -254,6 +261,9 @@ List<Attention^>^ AttentionDB::QueryAllByModuloStansa(ModuloStansa^ modulo){
 	List<Attention^>^ AttentionList = gcnew List<Attention^>();
 	while (dr->Read()){
 		Attention^a = gcnew Attention();
+		a->customer = gcnew Customer();
+		a->moduloStansa = gcnew ModuloStansa();
+		a->staff = gcnew Staff();
 		a->id = (int)dr["id"];
 		if (dr["date"] != System::DBNull::Value)
 			a->fecha = safe_cast<DateTime^>(dr["date"]);
