@@ -17,6 +17,9 @@ namespace UserApp {
 	/// </summary>
 	public ref class StatusForm : public System::Windows::Forms::Form
 	{
+
+	private:
+		Thread ^myThread;
 	public:
 		StatusForm(void)
 		{
@@ -24,8 +27,21 @@ namespace UserApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			RefreshDGVStansas();
+			myThread = gcnew Thread(gcnew ThreadStart(this, &StatusForm::MyRun));
+			myThread->Start();
 		}
+		void MyRun(){
+			int time = 0;
+			while (true) {
+				Invoke(gcnew delegateRefreshProducts(this, &StatusForm::RefreshDGVStansas));
+				Random^ rnd = gcnew Random();
+				time = rnd->Next() % 10 + 1;
+				Thread::Sleep(time * 1000);
+				if (!this->Visible)
+					return;
+			}
+		}
+		delegate void delegateRefreshProducts();
 
 	protected:
 		/// <summary>
@@ -168,7 +184,7 @@ namespace UserApp {
 	
 	}
 	private: System::Void StatusForm_Load(System::Object^  sender, System::EventArgs^  e) {
-//				 RefreshDGVStansas();
+			 RefreshDGVStansas();
 
 	}
 	};
