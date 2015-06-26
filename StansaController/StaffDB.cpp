@@ -190,7 +190,7 @@ Staff^ StaffDB::QueryById(int id){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			s->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			s->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -240,7 +240,7 @@ Staff^ StaffDB::QueryByDni(String^ dni){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			s->sexo = Char::Parse( safe_cast<String ^>(dr["sex"]));
+			s->sexo =  safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -286,7 +286,7 @@ List<Staff^>^ StaffDB::QueryAll(){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			s->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			s->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			s->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			s->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)

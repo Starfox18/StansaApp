@@ -180,7 +180,7 @@ Customer^ CustomerDB::QueryById(int id){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			c->sexo = (safe_cast<String ^>(dr["sex"]));
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -228,7 +228,7 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			c->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -276,7 +276,7 @@ Customer^ CustomerDB::QueryByCodigoPUCP(String^ codigoPUCP){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			c->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -324,7 +324,7 @@ Customer^ CustomerDB::QueryByUser(String^ user){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			c->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
@@ -368,7 +368,7 @@ List<Customer^>^ CustomerDB::QueryAll(){
 		if (dr["secondLastName"] != System::DBNull::Value)
 			c->apellido_Materno = safe_cast<String ^>(dr["secondLastName"]);
 		if (dr["sex"] != System::DBNull::Value)
-			c->sexo = Char::Parse(safe_cast<String ^>(dr["sex"]));
+			c->sexo = safe_cast<String ^>(dr["sex"]);
 		if (dr["username"] != System::DBNull::Value)
 			c->username = safe_cast<String ^>(dr["username"]);
 		if (dr["password"] != System::DBNull::Value)
