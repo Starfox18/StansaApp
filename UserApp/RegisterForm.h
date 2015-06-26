@@ -161,6 +161,7 @@ namespace UserApp {
 			this->passwordlbl->Size = System::Drawing::Size(61, 13);
 			this->passwordlbl->TabIndex = 4;
 			this->passwordlbl->Text = L"Contraseña";
+			this->passwordlbl->Click += gcnew System::EventHandler(this, &RegisterForm::passwordlbl_Click);
 			// 
 			// maleRBT
 			// 
@@ -502,6 +503,8 @@ private: System::Void Password2lbl_Click(System::Object^  sender, System::EventA
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void manrdb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void passwordlbl_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

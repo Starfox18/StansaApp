@@ -194,7 +194,7 @@ namespace UserApp {
 				 }
 				 				 
 				 if (!String::Compare(p->password,psw))
-				 {	 PrincipalForm ^ psForm = gcnew PrincipalForm();
+				 {	 PrincipalForm ^ psForm = gcnew PrincipalForm(p);
 					 psForm->tittle = " Bienvenido a AppStansa : " + p->name + " " + p->apellido_Paterno+
 										" " + p->apellido_Materno + " ";
 					 Visible = false;

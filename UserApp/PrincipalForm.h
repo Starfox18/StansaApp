@@ -1,4 +1,5 @@
 #include "StatusForm.h"
+#include "HistorialForm.h"
 #pragma once
 
 namespace UserApp {
@@ -10,21 +11,27 @@ namespace UserApp {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace Threading;
+	using namespace StansaController;
+	using namespace FotoLibrary;
 
 	/// <summary>
 	/// Resumen de PrincipalForm
 	/// </summary>
 	public ref class PrincipalForm : public System::Windows::Forms::Form
+		
 	{
 	public:
 		String^ tittle;
+		Customer^ customerInitial = gcnew Customer();
+
 	private: System::Windows::Forms::Button^  Salesbtn;
 	public:
 		Thread^ tittle_thread;
 
-		PrincipalForm(void)
+		PrincipalForm(Customer^ p)
 		{
 			InitializeComponent();
+			customerInitial = p;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -143,8 +150,10 @@ private: System::Void PrincipalForm_Load(System::Object^  sender, System::EventA
 }
 private: System::Void Salesbtn_Click(System::Object^  sender, System::EventArgs^  e) {
 
-
-
+			 HistorialForm ^psForm = gcnew HistorialForm(customerInitial->id);
+			psForm->ShowDialog();
+			
+			 
 }
 };
 }

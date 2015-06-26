@@ -27,6 +27,9 @@
     <ClCompile Include="StatusForm.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="HistorialForm.cpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessForm.h">
@@ -41,6 +44,9 @@
     <ClInclude Include="StatusForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="HistorialForm.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AccessForm.resx">
@@ -52,7 +58,7 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <Filter>Archivos de recursos</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModStansa.resx">
+    <EmbeddedResource Include="StatusForm.resx">
       <Filter>Archivos de recursos</Filter>
     </EmbeddedResource>
   </ItemGroup>
