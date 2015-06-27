@@ -1,6 +1,7 @@
 #pragma once
 #include "PrincipalForm.h"
 #include "RegisterForm.h"
+#include "FastRegister.h"
 namespace UserApp {
 
 	using namespace System;
@@ -213,7 +214,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			 RegisterForm ^psForm = gcnew RegisterForm();
+			 FastRegister ^psForm = gcnew FastRegister();
 			 psForm->ShowDialog();
 
 }

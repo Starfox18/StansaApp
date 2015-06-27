@@ -2,12 +2,17 @@
 
 namespace UserApp {
 
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace FotoLibrary;
+	using namespace StansaController;
+	using namespace System::Collections::Generic;
+	using namespace System::Threading;
 
 	/// <summary>
 	/// Resumen de FastRegister
@@ -47,7 +52,8 @@ namespace UserApp {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  dnitxt;
+
 	private: System::Windows::Forms::Label^  label3;
 
 	private:
@@ -75,7 +81,7 @@ namespace UserApp {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->dnitxt = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
@@ -189,13 +195,14 @@ namespace UserApp {
 			this->label2->TabIndex = 34;
 			this->label2->Text = L"DNI";
 			// 
-			// textBox1
+			// dnitxt
 			// 
-			this->textBox1->Location = System::Drawing::Point(181, 85);
-			this->textBox1->MaxLength = 10;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(213, 20);
-			this->textBox1->TabIndex = 35;
+			this->dnitxt->Location = System::Drawing::Point(181, 85);
+			this->dnitxt->MaxLength = 8;
+			this->dnitxt->Name = L"dnitxt";
+			this->dnitxt->Size = System::Drawing::Size(213, 20);
+			this->dnitxt->TabIndex = 35;
+			this->dnitxt->TextChanged += gcnew System::EventHandler(this, &FastRegister::textBox1_TextChanged);
 			// 
 			// label3
 			// 
@@ -215,7 +222,7 @@ namespace UserApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(514, 312);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->dnitxt);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -238,11 +245,13 @@ namespace UserApp {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 //VALIDACION Y OBTENCIÓN DE USUARIO
 				 String^ user = usertxt->Text->Trim();
+				 String^ dni = dnitxt->Text->Trim();
 				 if (user == ""){
 					 MessageBox::Show("Campo USUARIO solicitado VACIO." +
 						 " Recuerde que todos los campos son obligatorios");
 					 return;
 				 }
+				 if (dnitxt->->)
 				 //VALIDACION Y OBTENCIÓN DE CONTRASEÑA
 				 String^ password = passwordtxt->Text->Trim();
 				 if (password == ""){
@@ -265,9 +274,42 @@ namespace UserApp {
 						 " Recuerde que todos los campos son obligatorios");
 					 return;
 				 }
+				
+				 Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codetxt->Text);
+				 p = StansaManager::QueryCustomerByDni(dni);
+				 if (!(p == nullptr)){
+					 MessageBox::Show("DNI ya registrado, NO PUEDE volvera registrarse." +
+						 " Solicite suss credenciales a Soporte ténico");
+					 return;
+				 }
+				 p = StansaManager::QueryCustomerByUser(usertxt->Text);
+				 if (!(p == nullptr)){
+					 MessageBox::Show("Nombre de usuario ya usado previamente, elija otro nombre de Usuario");
+					 return;
+				 }
 
+				 if (passwordtxt == password2txt){
+					 p = gcnew Customer();
+					 p->dni = dni;
+					 p->apellido_Paterno = "";
+					 p->apellido_Materno = "";
+					 p->name = "";
+					 p->sexo = "";
+					 p->username = usertxt->Text;
+					 p->password = passwordtxt->Text;
+					 p->codigoPUCP = codetxt->Text;
+					 p->facultad = "";
 
-
+					 StansaManager::AddCustomer(p);
+					 Close();
+				 }
+				 else
+				 {
+					 MessageBox::Show("Contraseñas no coinciden");
+				 }
 	}
+
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }
