@@ -213,8 +213,8 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			 RegisterForm ^psForm = gcnew RegisterForm();
-			 psForm->ShowDialog();
+			 //RegisterForm ^psForm = gcnew RegisterForm();
+			 //psForm->ShowDialog();
 
 }
 private: System::Void txtUser_TextChanged(System::Object^  sender, System::EventArgs^  e) {

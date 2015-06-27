@@ -1,5 +1,6 @@
 #include "StatusForm.h"
 #include "HistorialForm.h"
+#include "RegisterForm.h"
 #pragma once
 
 namespace UserApp {

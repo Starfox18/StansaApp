@@ -390,13 +390,34 @@ namespace UserApp {
 
 		}
 #pragma endregion
+		public: void LoadValues(){
+					usertxt->Text = customerAdded->username;
+					dnitxt->Text = customerAdded->dni;
+					codetxt->Text = customerAdded->codigoPUCP;
+					nametxt->Text = customerAdded->name;
+					lastnametxt->Text = customerAdded->apellido_Paterno;
+					secondlastnametxt->Text = customerAdded->apellido_Materno;
+					if (customerAdded->sexo == "M"){
+						maleRBT->Checked == true;
+					}
+					if (customerAdded->sexo == "F"){
+						femaleRBT->Checked == true;
+					}
+
+
+		}
+
+
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+				 /*
 		//VALIDACION Y OBTENCIÓN DE DNI
 		String^ dni = dnitxt->Text->Trim();
 		if (dni == ""){
 			MessageBox::Show("Campo DNI solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
-			return; }
+			return;
+		}*/
 		//VALIDACION Y OBTENCIÓN DE APELLIDO PATERNO
 		String^ lastname = lastnametxt->Text->Trim();
 		if (lastname == ""){
@@ -453,7 +474,7 @@ namespace UserApp {
 				" Recuerde que todos los campos son obligatorios");
 			return; }
 	/*	//VALIDACION Y OBTENCIÓN DE CONTRASEÑA 2
-		String^ password2 = password2txt->Text->Trim();
+		
 		if (password2 == ""){
 			MessageBox::Show("Campo CONFIRMACION DE CONTRASEÑA solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
@@ -467,8 +488,11 @@ namespace UserApp {
 			return;
 		}
 		*/
+		String^ password2 = password2txt->Text->Trim();
+		String^ password = passwordtxt->Text->Trim();
+
 		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codetxt->Text);
-		p = StansaManager::QueryCustomerByDni(dni);
+		p = StansaManager::QueryCustomerByDni(dnitxt->Text);
 		if (!(p == nullptr)){
 			MessageBox::Show("DNI ya registrado, NO PUEDE volvera registrarse." +
 				" Solicite suss credenciales a Soporte ténico");
@@ -480,22 +504,44 @@ namespace UserApp {
 			return;
 		}
 
-		if (passwordtxt == password2txt){
+		
+
+		if (password == password2){
 				 p = gcnew Customer();
-				 p->dni = dni;
+				 p->id = customerAdded->id;
+				 p->dni = dnitxt->Text;
 				 p->apellido_Paterno = lastname;
 				 p->apellido_Materno = secondlastname;
 				 p->name = name;
 				 p->sexo = sexo;
-				 //p->username = usertxt->Text;
-				 p->password = passwordtxt->Text;
-				 //p->codigoPUCP =codi;
+				 p->username = usertxt->Text;
+				 
+				 p->codigoPUCP =codetxt->Text;
 				 p->facultad = facultad;
 
-				 StansaManager::AddCustomer(p);
-				 Close();
+				 if (password == customerAdded->password){
+					 if( MessageBox::Show("Usted ha ingresado una nueva contraseña",
+						 "Validación de nueva contraseña",
+						 MessageBoxButtons::YesNo, MessageBoxIcon::Question) ==
+						 System::Windows::Forms::DialogResult::Yes )
+					 {
+
+						 p->password = password;
+						 StansaManager::UpdateCustomer(p);
+						 Close();
+					 }
+					 else
+					 {
+						 MessageBox::Show("No olvide eliminar el campo de password o de lo contrario reescribir la  anterior contraseña");
+
+					 }
+
+				 }
+
+				 
+				 
 			 }
-		else
+			else
 				{MessageBox::Show("Contraseñas no coinciden");	}
 	}
 				
@@ -503,6 +549,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 			 Close();
 }
 private: System::Void RegisterForm_Load(System::Object^  sender, System::EventArgs^  e) {
+			 LoadValues();
 }
 private: System::Void codelbl_Click(System::Object^  sender, System::EventArgs^  e) {
 }

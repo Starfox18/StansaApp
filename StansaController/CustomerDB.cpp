@@ -242,7 +242,7 @@ Customer^ CustomerDB::QueryByDni(String^ dni){
 	dr->Close();
 	conn->Close();
 	return c;
-}
+}//hola
 Customer^ CustomerDB::QueryByCodigoPUCP(String^ codigoPUCP){
 	//Paso 1: Se abre la conexión
 	SqlConnection^ conn;
