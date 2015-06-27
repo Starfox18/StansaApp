@@ -251,7 +251,6 @@ namespace UserApp {
 						 " Recuerde que todos los campos son obligatorios");
 					 return;
 				 }
-				 if (dnitxt->->)
 				 //VALIDACION Y OBTENCIÓN DE CONTRASEÑA
 				 String^ password = passwordtxt->Text->Trim();
 				 if (password == ""){
@@ -288,7 +287,7 @@ namespace UserApp {
 					 return;
 				 }
 
-				 if (passwordtxt == password2txt){
+				 if (passwordtxt->Text == password2txt->Text){
 					 p = gcnew Customer();
 					 p->dni = dni;
 					 p->apellido_Paterno = "";
