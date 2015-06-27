@@ -25,6 +25,7 @@ namespace UserApp {
 		Customer^ customerInitial = gcnew Customer();
 
 	private: System::Windows::Forms::Button^  Salesbtn;
+	private: System::Windows::Forms::Button^  button3;
 	public:
 		Thread^ tittle_thread;
 
@@ -92,6 +93,7 @@ namespace UserApp {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->Salesbtn = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button2
@@ -115,19 +117,29 @@ namespace UserApp {
 			// 
 			// Salesbtn
 			// 
-			this->Salesbtn->Location = System::Drawing::Point(290, 214);
+			this->Salesbtn->Location = System::Drawing::Point(100, 200);
 			this->Salesbtn->Name = L"Salesbtn";
-			this->Salesbtn->Size = System::Drawing::Size(249, 108);
+			this->Salesbtn->Size = System::Drawing::Size(239, 97);
 			this->Salesbtn->TabIndex = 6;
 			this->Salesbtn->Text = L"Historial de Ventas";
 			this->Salesbtn->UseVisualStyleBackColor = true;
 			this->Salesbtn->Click += gcnew System::EventHandler(this, &PrincipalForm::Salesbtn_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(477, 200);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(239, 96);
+			this->button3->TabIndex = 8;
+			this->button3->Text = L"Disponibilidad Stansa";
+			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// PrincipalForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(910, 545);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->Salesbtn);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);

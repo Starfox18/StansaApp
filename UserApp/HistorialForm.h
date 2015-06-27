@@ -18,13 +18,13 @@ namespace UserApp {
 		int idCustomer;
 
 	public:
-		HistorialForm(int kiki)
+		HistorialForm(int idUser)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			idCustomer = kiki;
+			idCustomer = idUser;
 		}
 
 	protected:
