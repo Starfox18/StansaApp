@@ -48,6 +48,7 @@ namespace UserApp {
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Label^  label3;
 
 	private:
 		/// <summary>
@@ -75,12 +76,13 @@ namespace UserApp {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// Password2lbl
 			// 
 			this->Password2lbl->AutoSize = true;
-			this->Password2lbl->Location = System::Drawing::Point(40, 152);
+			this->Password2lbl->Location = System::Drawing::Point(82, 152);
 			this->Password2lbl->Name = L"Password2lbl";
 			this->Password2lbl->Size = System::Drawing::Size(94, 13);
 			this->Password2lbl->TabIndex = 30;
@@ -88,7 +90,7 @@ namespace UserApp {
 			// 
 			// password2txt
 			// 
-			this->password2txt->Location = System::Drawing::Point(140, 149);
+			this->password2txt->Location = System::Drawing::Point(182, 149);
 			this->password2txt->MaxLength = 15;
 			this->password2txt->Name = L"password2txt";
 			this->password2txt->PasswordChar = '~';
@@ -97,7 +99,7 @@ namespace UserApp {
 			// 
 			// codetxt
 			// 
-			this->codetxt->Location = System::Drawing::Point(139, 172);
+			this->codetxt->Location = System::Drawing::Point(181, 172);
 			this->codetxt->MaxLength = 8;
 			this->codetxt->Name = L"codetxt";
 			this->codetxt->Size = System::Drawing::Size(213, 20);
@@ -106,7 +108,7 @@ namespace UserApp {
 			// codelbl
 			// 
 			this->codelbl->AutoSize = true;
-			this->codelbl->Location = System::Drawing::Point(40, 175);
+			this->codelbl->Location = System::Drawing::Point(82, 175);
 			this->codelbl->Name = L"codelbl";
 			this->codelbl->Size = System::Drawing::Size(67, 13);
 			this->codelbl->TabIndex = 29;
@@ -114,7 +116,7 @@ namespace UserApp {
 			// 
 			// passwordtxt
 			// 
-			this->passwordtxt->Location = System::Drawing::Point(139, 127);
+			this->passwordtxt->Location = System::Drawing::Point(181, 127);
 			this->passwordtxt->MaxLength = 15;
 			this->passwordtxt->Name = L"passwordtxt";
 			this->passwordtxt->PasswordChar = '~';
@@ -123,7 +125,7 @@ namespace UserApp {
 			// 
 			// usertxt
 			// 
-			this->usertxt->Location = System::Drawing::Point(139, 107);
+			this->usertxt->Location = System::Drawing::Point(181, 107);
 			this->usertxt->MaxLength = 10;
 			this->usertxt->Name = L"usertxt";
 			this->usertxt->Size = System::Drawing::Size(213, 20);
@@ -132,7 +134,7 @@ namespace UserApp {
 			// passwordlbl
 			// 
 			this->passwordlbl->AutoSize = true;
-			this->passwordlbl->Location = System::Drawing::Point(40, 130);
+			this->passwordlbl->Location = System::Drawing::Point(82, 130);
 			this->passwordlbl->Name = L"passwordlbl";
 			this->passwordlbl->Size = System::Drawing::Size(61, 13);
 			this->passwordlbl->TabIndex = 24;
@@ -141,7 +143,7 @@ namespace UserApp {
 			// userlbl
 			// 
 			this->userlbl->AutoSize = true;
-			this->userlbl->Location = System::Drawing::Point(40, 110);
+			this->userlbl->Location = System::Drawing::Point(82, 110);
 			this->userlbl->Name = L"userlbl";
 			this->userlbl->Size = System::Drawing::Size(43, 13);
 			this->userlbl->TabIndex = 23;
@@ -153,7 +155,7 @@ namespace UserApp {
 			this->label1->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(23, 48);
+			this->label1->Location = System::Drawing::Point(65, 48);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(367, 13);
 			this->label1->TabIndex = 31;
@@ -161,7 +163,7 @@ namespace UserApp {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(43, 213);
+			this->button1->Location = System::Drawing::Point(85, 213);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(104, 34);
 			this->button1->TabIndex = 32;
@@ -171,7 +173,7 @@ namespace UserApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(220, 213);
+			this->button2->Location = System::Drawing::Point(262, 213);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(104, 34);
 			this->button2->TabIndex = 33;
@@ -181,7 +183,7 @@ namespace UserApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(40, 88);
+			this->label2->Location = System::Drawing::Point(82, 88);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(26, 13);
 			this->label2->TabIndex = 34;
@@ -189,17 +191,30 @@ namespace UserApp {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(139, 85);
+			this->textBox1->Location = System::Drawing::Point(181, 85);
 			this->textBox1->MaxLength = 10;
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(213, 20);
 			this->textBox1->TabIndex = 35;
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 6.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(41, 70);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(439, 12);
+			this->label3->TabIndex = 36;
+			this->label3->Text = L"DNI, USUARIO Y CODIGO PUCP SOLO PODRÁN SER INGRESADOS UNA SOLA VEZ";
+			// 
 			// FastRegister
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(393, 259);
+			this->ClientSize = System::Drawing::Size(514, 312);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
