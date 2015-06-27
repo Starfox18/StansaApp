@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccessForm.cpp" />
+    <ClCompile Include="FastRegister.cpp" />
     <ClCompile Include="HistorialForm.cpp" />
     <ClCompile Include="PrincipalForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
@@ -26,6 +27,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FastRegister.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="HistorialForm.h">
@@ -44,6 +48,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AccessForm.resx">
       <DependentUpon>AccessForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastRegister.resx">
+      <DependentUpon>FastRegister.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistorialForm.resx">
       <DependentUpon>HistorialForm.h</DependentUpon>

@@ -19,12 +19,15 @@ namespace UserApp {
 	public ref class RegisterForm : public System::Windows::Forms::Form
 	{
 	public:
-		RegisterForm(void)
+		Customer^ customerAdded;
+
+		RegisterForm(Customer^ c)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			customerAdded = c;
 		}
 
 	protected:
@@ -200,6 +203,7 @@ namespace UserApp {
 			this->dnitxt->Location = System::Drawing::Point(126, 73);
 			this->dnitxt->MaxLength = 8;
 			this->dnitxt->Name = L"dnitxt";
+			this->dnitxt->ReadOnly = true;
 			this->dnitxt->Size = System::Drawing::Size(204, 20);
 			this->dnitxt->TabIndex = 1;
 			// 
@@ -225,6 +229,7 @@ namespace UserApp {
 			this->usertxt->Location = System::Drawing::Point(465, 73);
 			this->usertxt->MaxLength = 10;
 			this->usertxt->Name = L"usertxt";
+			this->usertxt->ReadOnly = true;
 			this->usertxt->Size = System::Drawing::Size(213, 20);
 			this->usertxt->TabIndex = 7;
 			// 
@@ -299,6 +304,7 @@ namespace UserApp {
 			this->codetxt->Location = System::Drawing::Point(465, 138);
 			this->codetxt->MaxLength = 8;
 			this->codetxt->Name = L"codetxt";
+			this->codetxt->ReadOnly = true;
 			this->codetxt->Size = System::Drawing::Size(213, 20);
 			this->codetxt->TabIndex = 10;
 			// 
@@ -420,6 +426,7 @@ namespace UserApp {
 			MessageBox::Show("Campo SEXO solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
 			return; }
+		/*
 		//VALIDACION Y OBTENCIÓN DE USUARIO
 		String^ user = usertxt->Text->Trim();
 		if (user == ""){
@@ -438,19 +445,20 @@ namespace UserApp {
 			MessageBox::Show("Campo CODIGO PUCP solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
 			return; }
+		*/
 		//VALIDACION Y OBTENCIÓN DE FACULTAD
 		String^ facultad = cbxfacultad->Text->Trim();
 		if (facultad == ""){
 			MessageBox::Show("Campo FACULTAD solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
 			return; }
-		//VALIDACION Y OBTENCIÓN DE CONTRASEÑA 2
+	/*	//VALIDACION Y OBTENCIÓN DE CONTRASEÑA 2
 		String^ password2 = password2txt->Text->Trim();
 		if (password2 == ""){
 			MessageBox::Show("Campo CONFIRMACION DE CONTRASEÑA solicitado VACIO." +
 				" Recuerde que todos los campos son obligatorios");
 			return; }
-
+    
 		//VALIDACIONES DE CODIGO PUCP | USER | DNI | REGISTRADOS PREVIAMENTE
 		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codigo);
 		if (!(p == nullptr)){
@@ -458,28 +466,30 @@ namespace UserApp {
 								" Solicite suss credenciales a Soporte ténico");
 			return;
 		}
+		*/
+		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codetxt->Text);
 		p = StansaManager::QueryCustomerByDni(dni);
 		if (!(p == nullptr)){
 			MessageBox::Show("DNI ya registrado, NO PUEDE volvera registrarse." +
 				" Solicite suss credenciales a Soporte ténico");
 			return;
 		}
-		p = StansaManager::QueryCustomerByUser(user);
+		p = StansaManager::QueryCustomerByUser(usertxt->Text);
 		if (!(p == nullptr)){
 			MessageBox::Show("Nombre de usuario ya usado previamente, elija otro nombre de Usuario");
 			return;
 		}
 
-		if (password2 == password){
+		if (passwordtxt == password2txt){
 				 p = gcnew Customer();
 				 p->dni = dni;
 				 p->apellido_Paterno = lastname;
 				 p->apellido_Materno = secondlastname;
 				 p->name = name;
 				 p->sexo = sexo;
-				 p->username = user;
-				 p->password = password;
-				 p->codigoPUCP = codigo;
+				 //p->username = usertxt->Text;
+				 p->password = passwordtxt->Text;
+				 //p->codigoPUCP =codi;
 				 p->facultad = facultad;
 
 				 StansaManager::AddCustomer(p);
