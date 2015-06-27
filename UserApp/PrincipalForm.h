@@ -163,7 +163,7 @@ private: System::Void PrincipalForm_Load(System::Object^  sender, System::EventA
 }
 private: System::Void Salesbtn_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			 HistorialForm ^psForm = gcnew HistorialForm(customerInitial->id);
+			 HistorialForm ^psForm = gcnew HistorialForm(customerInitial);
 			psForm->ShowDialog();
 			
 			 

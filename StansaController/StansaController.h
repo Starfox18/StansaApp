@@ -85,6 +85,7 @@ namespace StansaController {
 	public:
 		void SaveSale(Sale^ sale);
 		void SaleDetail(int idSale, Saledetail^ saledetail);
+		List<Sale^>^ QueryAllByCustomer(Customer^ y);
 	}; //Fin Clase SaleDB y sale detail
 	
 
@@ -113,6 +114,7 @@ namespace StansaController {
 			//metodos de clase globales para sales
 			static void RegisterSaleDetail(int idSale, Saledetail^ saleDetail);
 			static void RegisterSaveSale(Sale ^sale);
+			static List<Sale^>^ QuerySaleByIdcustomer(Customer^ y);
 	public:
 			//metodos de clase globlales para Staff
 			static void AddStaff(Staff^ s, int idModuloStansa);

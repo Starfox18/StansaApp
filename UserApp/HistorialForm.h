@@ -8,23 +8,45 @@ namespace UserApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace FotoLibrary;
+	using namespace StansaController;
+	using namespace System::Collections::Generic;
+	using namespace Threading;
 
 	/// <summary>
 	/// Resumen de HistorialForm
 	/// </summary>
 	public ref class HistorialForm : public System::Windows::Forms::Form
 	{
+	private:
+		Thread ^threadRefresh;
 	public:
-		int idCustomer;
+		Customer^ customer;
 
 	public:
-		HistorialForm(int idUser)
+		HistorialForm(Customer^ kiki)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			idCustomer = idUser;
+			customer = kiki;
+		}
+		void Createthread(){
+			threadRefresh = gcnew Thread(gcnew ThreadStart(this, &HistorialForm::MyRun));
+			threadRefresh->Start();
+		}
+		delegate void delegateRefreshHistorial();
+		void MyRun(){
+			int time = 0;
+			while (true) {
+				Invoke(gcnew delegateRefreshHistorial(this, &HistorialForm::RefreshDGVHistorial));
+				Random^ rnd = gcnew Random();
+				time = rnd->Next() % 10 + 1;
+				Thread::Sleep(time * 1000);
+				if (!this->Visible)
+					return;
+			}
 		}
 
 	protected:
@@ -38,7 +60,13 @@ namespace UserApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataGridView^  dataGridView1;
+	private: System::Windows::Forms::DataGridView^  dgvhistorial;
+	protected:
+
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Date;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Cajero;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  ModuloStansa;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Total;
 	protected:
 
 	private:
@@ -54,30 +82,88 @@ namespace UserApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->dgvhistorial = (gcnew System::Windows::Forms::DataGridView());
+			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Cajero = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ModuloStansa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Total = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvhistorial))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// dataGridView1
+			// dgvhistorial
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(114, 226);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(376, 150);
-			this->dataGridView1->TabIndex = 0;
+			this->dgvhistorial->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvhistorial->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->Date, this->Cajero,
+					this->ModuloStansa, this->Total
+			});
+			this->dgvhistorial->Location = System::Drawing::Point(24, 23);
+			this->dgvhistorial->Name = L"dgvhistorial";
+			this->dgvhistorial->Size = System::Drawing::Size(444, 150);
+			this->dgvhistorial->TabIndex = 0;
+			this->dgvhistorial->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &HistorialForm::dataGridView1_CellContentClick);
+			// 
+			// Date
+			// 
+			this->Date->HeaderText = L"Fecha";
+			this->Date->Name = L"Date";
+			// 
+			// Cajero
+			// 
+			this->Cajero->HeaderText = L"Cajero";
+			this->Cajero->Name = L"Cajero";
+			// 
+			// ModuloStansa
+			// 
+			this->ModuloStansa->HeaderText = L"Modulo Stansa";
+			this->ModuloStansa->Name = L"ModuloStansa";
+			// 
+			// Total
+			// 
+			this->Total->HeaderText = L"Total";
+			this->Total->Name = L"Total";
 			// 
 			// HistorialForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(615, 430);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dgvhistorial);
 			this->Name = L"HistorialForm";
 			this->Text = L"HistorialForm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvhistorial))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	public: void RefreshDGVHistorial(){
+				
+				
+				
+				
+				List<Sale^>^ historialList = StansaManager::QuerySaleByIdcustomer(customer);
+			//	int i;
+				//String^ idstaff = historialList[i]->staff->name
+				Attention^ attentionTable = gcnew Attention();
+				Staff^ staffTable = gcnew Staff();
+				FotoLibrary::ModuloStansa^ stansaTable = gcnew FotoLibrary::ModuloStansa();
+				Sale^ saleTable = gcnew Sale();
+
+				dgvhistorial->Rows->Clear();
+				for (int i = 0; i < historialList->Count; i++){
+					attentionTable = StansaManager::QueryAttentionById(historialList[i]->attention->id);
+					staffTable = StansaManager::QueryStaffById(attentionTable->staff->id); 
+					stansaTable = StansaManager::QueryModuloStansaById(attentionTable->moduloStansa->id);
+					dgvhistorial->Rows->Add(gcnew array<String^>{
+						(attentionTable->fecha->Date ,
+							staffTable->name,
+							stansaTable->name,
+							"" + historialList[i]->total)});
+				}
+	}
+			//holi
+
+	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	}
 	};
 }

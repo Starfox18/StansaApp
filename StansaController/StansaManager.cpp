@@ -85,6 +85,9 @@ void StansaManager::RegisterSaleDetail(int idSale, Saledetail^ saleDetail)
 {
 	saleDB->SaleDetail(idSale, saleDetail);
 }
+List<Sale^>^ StansaManager::QuerySaleByIdcustomer(Customer^ y){
+	return saleDB->QueryAllByCustomer(y);
+}
 
 //metodos de clase globlales para ModuloStansa
 void StansaManager::AddModuloStansa(ModuloStansa^ m){
@@ -140,4 +143,5 @@ List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaFechaAndCustomer
 List<Attention^>^ StansaManager::QueryAllAttentionByModuloStansaFechaAndStaff(ModuloStansa^ modulo, String^ fecha, Staff^ staff){
 	return attentionDB->QueryAllByModuloStansaFechaAndStaff(modulo, fecha, staff);
 }
+
 
