@@ -131,8 +131,9 @@ namespace UserApp {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(239, 96);
 			this->button3->TabIndex = 8;
-			this->button3->Text = L"Disponibilidad Stansa";
+			this->button3->Text = L"Actualizar Datos";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &PrincipalForm::button3_Click);
 			// 
 			// PrincipalForm
 			// 
@@ -166,6 +167,10 @@ private: System::Void Salesbtn_Click(System::Object^  sender, System::EventArgs^
 			psForm->ShowDialog();
 			
 			 
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+			 HistorialForm ^psForm = gcnew HistorialForm(customerInitial);
+			 psForm->ShowDialog();
 }
 };
 }
