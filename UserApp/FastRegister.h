@@ -243,6 +243,7 @@ namespace UserApp {
 
 		}
 #pragma endregion
+		//por favor una corridita
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 				 //VALIDACION Y OBTENCIÓN DE USUARIO
 				 String^ user = usertxt->Text->Trim();
