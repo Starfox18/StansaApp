@@ -79,6 +79,7 @@ namespace UserApp {
 			// txtPsw
 			// 
 			this->txtPsw->Location = System::Drawing::Point(213, 78);
+			this->txtPsw->MaxLength = 30;
 			this->txtPsw->Name = L"txtPsw";
 			this->txtPsw->PasswordChar = '•';
 			this->txtPsw->Size = System::Drawing::Size(100, 20);
@@ -87,6 +88,7 @@ namespace UserApp {
 			// txtUser
 			// 
 			this->txtUser->Location = System::Drawing::Point(213, 39);
+			this->txtUser->MaxLength = 15;
 			this->txtUser->Name = L"txtUser";
 			this->txtUser->Size = System::Drawing::Size(100, 20);
 			this->txtUser->TabIndex = 16;

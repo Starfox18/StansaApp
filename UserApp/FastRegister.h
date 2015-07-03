@@ -123,7 +123,7 @@ namespace UserApp {
 			// passwordtxt
 			// 
 			this->passwordtxt->Location = System::Drawing::Point(181, 127);
-			this->passwordtxt->MaxLength = 15;
+			this->passwordtxt->MaxLength = 20;
 			this->passwordtxt->Name = L"passwordtxt";
 			this->passwordtxt->PasswordChar = '~';
 			this->passwordtxt->Size = System::Drawing::Size(213, 20);
@@ -132,7 +132,7 @@ namespace UserApp {
 			// usertxt
 			// 
 			this->usertxt->Location = System::Drawing::Point(181, 107);
-			this->usertxt->MaxLength = 10;
+			this->usertxt->MaxLength = 15;
 			this->usertxt->Name = L"usertxt";
 			this->usertxt->Size = System::Drawing::Size(213, 20);
 			this->usertxt->TabIndex = 25;
@@ -246,6 +246,13 @@ namespace UserApp {
 				 //VALIDACION Y OBTENCIÓN DE USUARIO
 				 String^ user = usertxt->Text->Trim();
 				 String^ dni = dnitxt->Text->Trim();
+				 if (dni->Length != 8){
+					 MessageBox::Show("Campo DNI solicitado incompleto." +
+						 " Recuerde que los lo Números DNI se definen de 8 numeros");
+					 return;
+				 }
+
+
 				 if (user == ""){
 					 MessageBox::Show("Campo USUARIO solicitado VACIO." +
 						 " Recuerde que todos los campos son obligatorios");
