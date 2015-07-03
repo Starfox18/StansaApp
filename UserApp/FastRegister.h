@@ -288,6 +288,7 @@ namespace UserApp {
 						 " Solicite suss credenciales a Soporte ténico");
 					 return;
 				 }
+
 				 p = StansaManager::QueryCustomerByUser(usertxt->Text);
 				 if (!(p == nullptr)){
 					 MessageBox::Show("Nombre de usuario ya usado previamente, elija otro nombre de Usuario");
