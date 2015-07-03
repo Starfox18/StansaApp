@@ -491,6 +491,7 @@ namespace UserApp {
 		String^ password2 = password2txt->Text->Trim();
 		String^ password = passwordtxt->Text->Trim();
 
+		/*
 		Customer ^p = StansaManager::QueryCustomerByCodigoPUCP(codetxt->Text);
 		p = StansaManager::QueryCustomerByDni(dnitxt->Text);
 		if (!(p == nullptr)){
@@ -503,8 +504,9 @@ namespace UserApp {
 			MessageBox::Show("Nombre de usuario ya usado previamente, elija otro nombre de Usuario");
 			return;
 		}
+		*/
+		Customer ^p = StansaManager::QueryCustomerByDni(dnitxt->Text);
 
-		
 
 		if (password == password2){
 				 p = gcnew Customer();
@@ -519,7 +521,7 @@ namespace UserApp {
 				 p->codigoPUCP =codetxt->Text;
 				 p->facultad = facultad;
 
-				 if (password == customerAdded->password){
+				 if (password != customerAdded->password){
 					 if( MessageBox::Show("Usted ha ingresado una nueva contraseña",
 						 "Validación de nueva contraseña",
 						 MessageBoxButtons::YesNo, MessageBoxIcon::Question) ==

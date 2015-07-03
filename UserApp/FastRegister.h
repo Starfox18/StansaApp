@@ -185,6 +185,7 @@ namespace UserApp {
 			this->button2->TabIndex = 33;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &FastRegister::button2_Click);
 			// 
 			// label2
 			// 
@@ -288,6 +289,12 @@ namespace UserApp {
 						 " Solicite suss credenciales a Soporte ténico");
 					 return;
 				 }
+				 p = StansaManager::QueryCustomerByCodigoPUCP(codigo);
+				 if (!(p == nullptr)){
+					 MessageBox::Show("Codigo PUCP ya registrado, NO PUEDE volvera registrarse." +
+						 " Solicite suss credenciales a Soporte ténico");
+					 return;
+				 }
 
 				 p = StansaManager::QueryCustomerByUser(usertxt->Text);
 				 if (!(p == nullptr)){
@@ -317,6 +324,9 @@ namespace UserApp {
 	}
 
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 Close();
 }
 };
 }
